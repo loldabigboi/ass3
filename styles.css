@@ -23,6 +23,7 @@ html, body {
 }
 
 #sidebar {
+  position: relative;
   width: 400px;
   padding: 20px;
   border-right: 1px solid lightgray;
@@ -31,6 +32,29 @@ html, body {
 }
 #sidebar > * + * {
   margin-bottom: 15px;
+}
+
+#create-assignment-button {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+  padding: 15px 30px;
+  border: none;
+  background: #2962ff;
+  color: white;
+  font-size: 18px;
+  font-family: "Nunito";
+  border-radius: 6px;
+}
+#create-assignment-button:hover {
+  cursor: pointer;
+  background: #3d71ff;
+}
+#create-assignment-button:active {
+  background: #5280ff;
+}
+#create-assignment-button:focus {
+  outline: none;
 }
 
 #logo-container {
@@ -86,7 +110,7 @@ html, body {
   display: flex;
   flex-direction: column;
 }
-#content-container * + * {
+#content-container > * + * {
   margin-bottom: 10px;
 }
 #content-container #assignment-details > * {
@@ -147,6 +171,16 @@ html, body {
   float: right;
   width: 15px;
   margin: 0;
+}
+#content-container #files-container .file-container .file-name-item img {
+  align-self: center;
+  height: 25px;
+  margin-right: 25px;
+}
+#content-container #files-container .file-container .file-item {
+  height: 30px;
+  padding: 15px;
+  border-bottom: 1px solid lightgray;
 }
 #content-container #files-container .file-container ~ .file-container {
   border-left: 1px solid lightgray;
