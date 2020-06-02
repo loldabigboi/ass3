@@ -74,8 +74,6 @@ html, body {
 
 .selected-assignment {
   border-right: 8px solid #2962ff;
-  margin-right: -1px;
-  margin-top: -1px;
 }
 
 .first-assignment {
@@ -140,13 +138,13 @@ html, body {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px 7px !important;
+  padding: 5px 6px !important;
   background: none;
   border-radius: 50%;
 }
 .exit-button img {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   padding: 0;
 }
 .exit-button:hover {
@@ -167,16 +165,25 @@ html, body {
   outline: 1px solid #8fadff;
 }
 
+.clickable:hover, #content-container #files-container .file-container .sort-ribbon:hover {
+  background: #fafafa;
+  cursor: pointer;
+}
+.clickable:active, #content-container #files-container .file-container .sort-ribbon:active {
+  background: whitesmoke;
+}
+
 #create-assignment-button {
   position: absolute;
   bottom: 0;
   margin-bottom: 0px;
   font-size: 15px;
-  padding: 10px 25px;
+  padding: 5px 25px;
+  padding-left: 15px;
 }
 #create-assignment-button img {
-  height: 18px;
-  margin-right: 13px;
+  height: 35px;
+  margin-right: 8px;
 }
 
 #content-container {
@@ -209,14 +216,24 @@ html, body {
   margin-top: 10px;
   margin-bottom: 35px;
   display: flex;
-  justify-content: space-between;
 }
-#content-container #assignment-buttons-container #delete-assignment-button img {
-  height: 23px;
-  margin-right: 10px;
+#content-container #assignment-buttons-container button ~ button {
+  margin-left: 10px;
 }
 #content-container #assignment-buttons-container #view-group-button img {
   height: 23px;
+  margin-right: 10px;
+}
+#content-container #assignment-buttons-container #upload-file-button img {
+  height: 19px;
+  margin-right: 7px;
+  margin-top: 2px;
+}
+#content-container #assignment-buttons-container #delete-assignment-button {
+  margin-left: auto;
+}
+#content-container #assignment-buttons-container #delete-assignment-button img {
+  height: 20px;
   margin-right: 10px;
 }
 #content-container #share-details-container {
@@ -264,19 +281,12 @@ html, body {
   padding: 0px 15px;
   border-bottom: 1px solid lightgray;
 }
-#content-container #files-container .file-container .sort-ribbon:hover {
-  background: #fafafa;
-  cursor: pointer;
-}
-#content-container #files-container .file-container .sort-ribbon:active {
-  background: whitesmoke;
-}
 #content-container #files-container .file-container .sort-ribbon div {
   float: left;
 }
 #content-container #files-container .file-container .sort-ribbon img {
   float: right;
-  width: 15px;
+  width: 19px;
   margin: 0;
 }
 #content-container #files-container .file-container .file-name-item img {

@@ -40,7 +40,7 @@
                 </div>
             </div>
             <button class="button primary-button" id="create-assignment-button" onclick="openAssignmentPopup()">
-                <img src="plus.png"><span>Create new assignment..</span>
+                <img src="plus.svg"><span>Create new assignment..</span>
             </button>
         </div>
         <div id="content-container">
@@ -53,10 +53,13 @@
             </div>
             <div id="assignment-buttons-container">
                 <button class="button secondary-button" id="view-group-button" onclick="openGroupPopup()">
-                    <img src="person.png"><span>View group..</span>
+                    <img src="person.svg"><span>View group..</span>
+                </button>
+                <button class="button primary-button" id="upload-file-button" onclick="openGroupPopup()">
+                    <img src="arrow-bar-up.svg"><span>Upload file..</span>
                 </button>
                 <button class="button danger-button" id="delete-assignment-button">
-                    <img src="trashcan.png"><span>Delete assignment</span>
+                    <img src="trash.svg"><span>Delete assignment</span>
                 </button>
             </div>
             <div id="share-details-container">
@@ -66,14 +69,14 @@
                 </div>
             </div>
             <div id="file-search-container">
-                <img src="search_icon.png">
+                <img src="search.svg">
                 <input class="input" id="file-search" type="text" placeholder="Search files.." oninput="searchFilter()">
             </div>
             <div id="files-container">
                 <div class="file-container" id="file-name-container">
                     <div class="sort-ribbon vertically-center-content">
                         <div>File name</div>
-                        <img src="down_arrow.png">
+                        <img src="down-arrow.svg">
                     </div>
                     <div class="file-item file-name-item vertically-center-content">
                         <img src="file-earmark-text.svg">
@@ -103,7 +106,7 @@
                 <div class="file-container" id="file-size-container">
                     <div class="sort-ribbon vertically-center-content">
                         <div>File size</div>
-                        <img src="down_arrow.png">
+                        <img src="down-arrow.svg">
                     </div>
                     <div class="file-item vertically-center-content">
                         35KB
@@ -127,7 +130,7 @@
                 <div class="file-container" id="file-time-container">
                     <div class="sort-ribbon vertically-center-content">
                         <div>Upload time</div>
-                        <img src="down_arrow.png">
+                        <img src="down-arrow.svg">
                     </div>
                     <div class="file-item vertically-center-content">
                         5:34PM, 31st May
@@ -155,11 +158,11 @@
         <h3>Current group members:</h3>
         <div id="group-member-list">
             <div class="group-member-item vertically-center-content">
-                <img src="person.png">
+                <img src="person.svg">
                 <span>John Smith (you)  -  Owner</span>
             </div>
             <div class="group-member-item vertically-center-content">
-                <img src="person.png">
+                <img src="person.svg">
                 <span>Jane Smith  -  Joined 3/05/2020, at 3:57pm</span>
                 <button class="button danger-button">Remove</button>
             </div>
@@ -172,7 +175,7 @@
         </div>
         <button class="button secondary-button" onclick="closeGroupPopup()">Back</button>
         <button class="button exit-button" onclick="closeGroupPopup()">
-            <img src="cross.png">
+            <img src="cross.svg">
         </button>
     </div>
     <div class="popup" id="assignment-popup">
