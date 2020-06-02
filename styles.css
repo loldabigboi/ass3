@@ -264,6 +264,13 @@ html, body {
   padding: 0px 15px;
   border-bottom: 1px solid lightgray;
 }
+#content-container #files-container .file-container .sort-ribbon:hover {
+  background: #fafafa;
+  cursor: pointer;
+}
+#content-container #files-container .file-container .sort-ribbon:active {
+  background: whitesmoke;
+}
 #content-container #files-container .file-container .sort-ribbon div {
   float: left;
 }
@@ -366,7 +373,7 @@ html, body {
 }
 
 #assignment-popup {
-  width: 300px;
+  width: 320px;
 }
 #assignment-popup h3 {
   line-height: 5px;
@@ -374,6 +381,7 @@ html, body {
 }
 #assignment-popup input {
   width: 100%;
+  margin-left: 10px;
   display: inline-block;
 }
 #assignment-popup .primary-button {
@@ -397,7 +405,7 @@ html, body {
   margin-bottom: 15px;
 }
 .field-container span {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=styles.css.map */

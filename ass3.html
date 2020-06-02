@@ -183,8 +183,11 @@
         <div class="field-container">
             <span>Assignment name: </span><input type="text" class="input">
         </div>
-        <div class="field-container">
-            <span>Due date: </span><input type="text" class="input">
+        <div id="date-field-container" class="field-container">
+            <span>Due date: </span>
+            <input id="day-input" type="text" class="input" placeholder="Day">
+            <input id="month-input" type="text" class="input" placeholder="Month">
+            <input type="text" class="input" placeholder="Time">
         </div>
         <div id="button-container">
             <button class="button secondary-button" onclick="closeAssignmentPopup()">Cancel</button>
