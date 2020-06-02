@@ -18,7 +18,7 @@ function searchFilter() {
 	const time = document.getElementById('file-time-container')
 
 	for(i = 1; i < name.children.length; ++i) {
-		if(name.children[i].innerText.includes(bar.value) ) {
+		if(name.children[i].innerText.toLowerCase().includes(bar.value.toLowerCase()) ) {
 			name.children[i].style.display = ""
 			size.children[i].style.display = ""
 			time.children[i].style.display = ""
