@@ -56,8 +56,8 @@
                 <button class="button secondary-button" id="view-group-button" onclick="openGroupPopup()">
                     <img src="person.svg"><span>View group..</span>
                 </button>
-                <button class="button primary-button" id="upload-file-button" onclick="openGroupPopup()">
-                    <img src="arrow-bar-up.svg"><span>Upload file..</span>
+                <button class="button primary-button" id="upload-file-button" onclick="openUploadPopup()">
+                    <img src="arrow-bar-up.svg"><span>Upload files..</span>
                 </button>
                 <button class="button danger-button" id="delete-assignment-button" onclick="openConfirmationPopup()">
                     <img src="trash.svg"><span>Delete assignment</span>
@@ -189,9 +189,9 @@
         </div>
         <div id="date-field-container" class="field-container">
             <span>Due date: </span>
+            <input id="time-input" type="text" class="input" placeholder="Time">
             <input id="day-input" type="text" class="input" placeholder="Day">
             <input id="month-input" type="text" class="input" placeholder="Month">
-            <input type="text" class="input" placeholder="Time">
         </div>
         <div id="button-container">
             <button class="button secondary-button" onclick="closeAssignmentPopup()">Cancel</button>
@@ -205,6 +205,15 @@
         <p>Are you sure you want to delete this assignment repository? <b>This action cannot be undone.</b></p>
         <button class="button secondary-button" onclick="closeConfirmationPopup()">Cancel</button>
         <button class="button danger-button" onclick="closeConfirmationPopup()">Delete</button>
+    </div>
+    <div class="popup" id="upload-files-popup">
+        <p>Select the file(s) that you would like to upload:</p>
+        <div>
+            <input class="input" type="text" readonly>
+            <button class="button secondary-button" onclick="closeUploadPopup()">Browse..</button>
+        </div>
+        <button class="button secondary-button" onclick="closeUploadPopup()">Back</button>
+        <button class="button primary-button" onclick="closeUploadPopup()">Upload</button>
     </div>
   </body>
   <script src="script.js"></script>

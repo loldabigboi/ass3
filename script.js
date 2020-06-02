@@ -1,6 +1,7 @@
 const group_popup = document.getElementById("group-popup");
 const assignment_popup = document.getElementById("assignment-popup");
 const confirmation_popup = document.getElementById("deletion-confirmation-popup");
+const upload_popup = document.getElementById("upload-files-popup");
 const page_container = document.getElementById("page-container");
 const search_bar = document.getElementById('file-search')
 const name_div = document.getElementById('file-name-container')
@@ -29,6 +30,18 @@ function openAssignmentPopup() {
     assignment_popup.style.display = "block";
     page_container.style.filter = "blur(3px)";
     page_container.addEventListener("mousedown", closeAssignmentPopup);
+}
+
+let closeUploadPopup = function() {
+    upload_popup.style.display = "none";
+    page_container.style.filter = "none";
+    page_container.removeEventListener("mousedown", closeUploadPopup);
+}
+
+function openUploadPopup() {
+    upload_popup.style.display = "block";
+    page_container.style.filter = "blur(3px)";
+    page_container.addEventListener("mousedown", closeUploadPopup);
 }
 
 let closeConfirmationPopup = function() {

@@ -189,10 +189,11 @@ html, body {
     font-weight: 550;
     margin: 0;
     border: 1px solid lightgray;
+    outline: none;
     height: 30px;
 
     &:focus {
-        outline: 1px solid lighten($base-color, 20%);
+        border: 1px solid $base-color;
     }
 
 }
@@ -540,6 +541,40 @@ html, body {
     margin-bottom: 15px;
 
     span {
+        margin-right: 10px;
+    }
+
+}
+
+#upload-files-popup {
+
+    width: 300px;
+    text-align: center;
+
+    div {
+
+        display: flex;
+        height: 30px;
+        margin-bottom: 20px;
+
+        input {
+            box-sizing: border-box;
+            flex: 1;
+            border-radius: 4px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        button {
+            display: inline-block;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            height: 100% !important;
+        }
+        
+    }
+
+    & > button {
         margin-right: 10px;
     }
 

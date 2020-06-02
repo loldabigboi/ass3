@@ -164,10 +164,11 @@ html, body {
   font-weight: 550;
   margin: 0;
   border: 1px solid lightgray;
+  outline: none;
   height: 30px;
 }
 .input:focus {
-  outline: 1px solid #8fadff;
+  border: 1px solid #2962ff;
 }
 
 .clickable:hover, #content-container #files-container .file-container .sort-ribbon:hover {
@@ -420,6 +421,32 @@ html, body {
   margin-bottom: 15px;
 }
 .field-container span {
+  margin-right: 10px;
+}
+
+#upload-files-popup {
+  width: 300px;
+  text-align: center;
+}
+#upload-files-popup div {
+  display: flex;
+  height: 30px;
+  margin-bottom: 20px;
+}
+#upload-files-popup div input {
+  box-sizing: border-box;
+  flex: 1;
+  border-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#upload-files-popup div button {
+  display: inline-block;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 100% !important;
+}
+#upload-files-popup > button {
   margin-right: 10px;
 }
 
