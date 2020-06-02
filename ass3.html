@@ -67,7 +67,7 @@
             </div>
             <div id="file-search-container">
                 <img src="search_icon.png">
-                <input class="input" id="file-search" type="text" placeholder="Search files..">
+                <input class="input" id="file-search" type="text" placeholder="Search files.." oninput="searchFilter()">
             </div>
             <div id="files-container">
                 <div class="file-container" id="file-name-container">
@@ -76,16 +76,28 @@
                         <img src="down_arrow.png">
                     </div>
                     <div class="file-item file-name-item vertically-center-content">
-                        <img src="txt_icon.png">
+                        <img src="file-earmark-text.svg">
                         <div>file.txt</div>
                     </div>
                     <div class="file-item file-name-item vertically-center-content">
-                        <img src="txt_icon.png">
+                        <img src="file-earmark-text.svg">
                         <div>file3.txt</div>
                     </div>
                     <div class="file-item file-name-item vertically-center-content">
-                        <img src="txt_icon.png">
-                        <div>file_new.txt</div>
+                        <img src="file-earmark-text.svg">
+                        <div>Meeting_Notes.txt</div>
+                    </div>
+                    <div class="file-item file-name-item vertically-center-content">
+                        <img src="file-earmark-text.svg">
+                        <div>Group_essay.pdf</div>
+                    </div>
+                    <div class="file-item file-name-item vertically-center-content">
+                        <img src="file-earmark-code.svg">
+                        <div>script.js</div>
+                    </div>
+                    <div class="file-item file-name-item vertically-center-content">
+                        <img src="file-earmark-spreadsheet.svg">
+                        <div>user_data.xlsx</div>
                     </div>
                 </div>
                 <div class="file-container" id="file-size-container">
@@ -102,6 +114,15 @@
                     <div class="file-item vertically-center-content">
                         2.3MB
                     </div>
+                    <div class="file-item vertically-center-content">
+                        3.1MB
+                    </div>
+                    <div class="file-item vertically-center-content">
+                        204B
+                    </div>
+                    <div class="file-item vertically-center-content">
+                        11KB
+                    </div>
                 </div>
                 <div class="file-container" id="file-time-container">
                     <div class="sort-ribbon vertically-center-content">
@@ -116,6 +137,15 @@
                     </div>
                     <div class="file-item vertically-center-content">
                         11:13AM, 30th May
+                    </div>
+                    <div class="file-item vertically-center-content">
+                        11:10AM, 31st May
+                    </div>
+                    <div class="file-item vertically-center-content">
+                        08:11AM, 15th June
+                    </div>
+                    <div class="file-item vertically-center-content">
+                        015:12AM, 18th June
                     </div>
                 </div>
             </div>
