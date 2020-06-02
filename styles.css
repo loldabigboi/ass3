@@ -12,6 +12,11 @@ html, body {
     display: none;
   }
 }
+* {
+  transition: background-color 0.15s linear;
+  transition: filter 0.25s linear;
+}
+
 .vertically-center-content {
   display: flex;
   align-items: center;
