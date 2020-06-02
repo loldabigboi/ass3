@@ -365,4 +365,39 @@ html, body {
   margin: 0;
 }
 
+#assignment-popup {
+  width: 300px;
+}
+#assignment-popup h3 {
+  line-height: 5px;
+  margin-bottom: 38px;
+}
+#assignment-popup input {
+  width: 100%;
+  display: inline-block;
+}
+#assignment-popup .primary-button {
+  float: right;
+}
+#assignment-popup .exit-button {
+  top: 19px;
+}
+
+#button-container {
+  margin-top: 28px;
+}
+#button-container button {
+  padding: 7px 14px;
+}
+
+.field-container {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-bottom: 15px;
+}
+.field-container span {
+  margin-right: 20px;
+}
+
 /*# sourceMappingURL=styles.css.map */

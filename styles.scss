@@ -465,3 +465,50 @@ html, body {
     }
 
 }
+
+#assignment-popup {
+
+    width: 300px;
+
+    h3 {
+        line-height: 5px;
+        margin-bottom: 38px;
+    }
+
+    input {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .primary-button {
+        float: right;
+    }
+
+    .exit-button {
+        top: 19px;
+    }
+    
+}
+
+#button-container {
+    margin-top: 28px;
+    
+    button {
+        padding: 7px 14px;
+    }
+
+}
+
+.field-container {
+
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    margin-bottom: 15px;
+
+    span {
+        margin-right: 20px;
+    }
+
+}

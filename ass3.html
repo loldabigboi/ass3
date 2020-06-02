@@ -39,7 +39,7 @@
                     <p>Grade weighting: 10%</p>
                 </div>
             </div>
-            <button class="button primary-button" id="create-assignment-button">
+            <button class="button primary-button" id="create-assignment-button" onclick="openAssignmentPopup()">
                 <img src="plus.png"><span>Create new assignment..</span>
             </button>
         </div>
@@ -145,6 +145,24 @@
             <img src="cross.png">
         </button>
     </div>
+    <div class="popup" id="assignment-popup">
+        <h3>Create a new assignment</h3>
+        <div class="field-container">
+            <span>Course name: </span><input type="text" class="input">
+        </div>
+        <div class="field-container">
+            <span>Assignment name: </span><input type="text" class="input">
+        </div>
+        <div class="field-container">
+            <span>Due date: </span><input type="text" class="input">
+        </div>
+        <div id="button-container">
+            <button class="button secondary-button" onclick="closeAssignmentPopup()">Cancel</button>
+            <button class="button primary-button">Create</button>
+        </div>
+        <button class="button exit-button" onclick="closeAssignmentPopup()">
+            <img src="cross.png">
+        </button>
   </body>
   <script src="script.js"></script>
 </html>
