@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>title</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap" rel="stylesheet">    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div id="page-container">
@@ -38,7 +39,7 @@
                     <p>Grade weighting: 10%</p>
                 </div>
             </div>
-            <button class="button default-button" id="create-assignment-button">
+            <button class="button primary-button" id="create-assignment-button">
                 <img src="plus.png"><span>Create new assignment..</span>
             </button>
         </div>
@@ -51,7 +52,7 @@
                 </div>
             </div>
             <div id="assignment-buttons-container">
-                <button class="button secondary-button" id="view-group-button">
+                <button class="button secondary-button" id="view-group-button" onclick="openGroupPopup()">
                     <img src="person.png"><span>View group..</span>
                 </button>
                 <button class="button danger-button" id="delete-assignment-button">
@@ -66,7 +67,7 @@
             </div>
             <div id="file-search-container">
                 <img src="search_icon.png">
-                <input id="file-search" type="text" placeholder="Search files..">
+                <input class="input" id="file-search" type="text" placeholder="Search files..">
             </div>
             <div id="files-container">
                 <div class="file-container" id="file-name-container">
@@ -121,7 +122,29 @@
         </div>
     </div>
     <div class="popup" id="group-popup">
-        aaaaaa
+        <h3>Current group members:</h3>
+        <div id="group-member-list">
+            <div class="group-member-item vertically-center-content">
+                <img src="person.png">
+                <span>John Smith (you)  -  Owner</span>
+            </div>
+            <div class="group-member-item vertically-center-content">
+                <img src="person.png">
+                <span>Jane Smith  -  Joined 3/05/2020, at 3:57pm</span>
+                <button class="button danger-button">Remove</button>
+            </div>
+
+        </div>
+        <p>Add another group member:</p>
+        <div class="vertically-center-content" id="email-input-container">
+            <input class="input" placeholder="email@myemail.com" maxlength=64>
+            <button class="button primary-button">Send invite</button>
+        </div>
+        <button class="button secondary-button">Back</button>
+        <button class="button exit-button" onclick="closeGroupPopup()">
+            <img src="cross.png">
+        </button>
     </div>
   </body>
+  <script src="script.js"></script>
 </html>

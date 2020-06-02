@@ -24,6 +24,7 @@ html, body {
     width: 100%;
     height: 100%;
     display: flex;
+    filter: blur(3px);
 }
 
 #sidebar {
@@ -115,7 +116,7 @@ html, body {
 
 }
 
-.default-button {
+.primary-button {
 
     background: $base-color;
     color:white;
@@ -154,6 +155,44 @@ html, body {
     &:active {
         background: darken(red, 4%);
     }
+}
+
+.exit-button {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 7px!important;
+    background: none;
+    border-radius: 50%;
+
+    img {
+        width: 16px;
+        height: 16px;
+        padding: 0;
+    }
+
+    &:hover {
+        background: rgb(240,240,240);
+    }
+
+    &:active {
+        background: rgb(230,230,230);
+    }
+}
+
+.input {
+
+    font-family: 'Nunito';
+    font-weight: 550;
+    margin: 0;
+    border: 1px solid lightgray;
+    height: 30px;
+
+    &:focus {
+        outline: 1px solid lighten($base-color, 20%);
+    }
+
 }
 
 #create-assignment-button {
@@ -259,17 +298,8 @@ html, body {
 
         input {
 
-            font-family: 'Nunito';
-            font-weight: 550;
             flex: 1 0;
             padding: 0 0 0 10px;
-            margin: 0;
-            border: 1px solid lightgray;
-            height: 30px;
-
-            &:focus {
-                outline: 1px solid lighten($base-color, 20%);
-            }
 
         }
 
@@ -350,13 +380,89 @@ html, body {
 
 .popup {
 
+    display: none;
     position: absolute;
     z-index: 1;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 
+    padding: 15px 25px;
+
+    background: white;
     border: 1px solid lightgray;
     border-radius: 8px;
+
+    .exit-button {
+        right: 20px;
+    }
+
+}
+
+#group-popup {
+
+    width: 700px;
+
+    p {
+        line-height: 5px;
+    }
+
+    & > button {
+        margin-top: 25px;
+        padding: 8px 20px;
+    }
+
+}
+
+#group-member-list {
+    border: 1px solid lightgray;
+    height: 380px;
+    margin-bottom: 30px;
+}
+
+.group-member-item {
+
+    &:nth-child(odd) {
+        background: rgb(250,250,250);
+    }
+    padding: 15px;
+
+    border-bottom: 1px solid lightgray;
+
+    img {
+        height: 35px;
+        margin-right: 20px;
+        border-radius: 30%;
+    }
+
+    button {
+        margin-left: auto;
+        margin-top: 0;
+    }
+}
+
+#email-input-container {
+
+    position: relative;
+    height: 45px;
+    border: 1px solid lightgray;
+    justify-content: space-between;
+
+    input {
+
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+        height: calc(100% - 20px);
+        border: none;
+
+    }
+
+    button {
+        position: absolute;
+        height: 80%;
+        right: 5px;
+        margin: 0;
+    }
 
 }
