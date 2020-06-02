@@ -50,6 +50,26 @@ function selectAssignment(element) {
     element.classList.add("selected-assignment")
 }
 
-function populate() {
-    
+function populateFileList(element) {
+    if(element.classList.contains("first-assignment")) {
+        name_div.children[1].style.display = ""
+        size_div.children[1].style.display = ""
+        time_div.children[1].style.display = ""
+        name_div.children[3].style.display = ""
+        size_div.children[3].style.display = ""
+        time_div.children[3].style.display = ""
+        name_div.children[4].style.display = ""
+        size_div.children[4].style.display = ""
+        time_div.children[4].style.display = ""
+    } else {
+        name_div.children[1].style.display = "none"
+        size_div.children[1].style.display = "none"
+        time_div.children[1].style.display = "none"
+        name_div.children[3].style.display = "none"
+        size_div.children[3].style.display = "none"
+        time_div.children[3].style.display = "none"
+        name_div.children[4].style.display = "none"
+        size_div.children[4].style.display = "none"
+        time_div.children[4].style.display = "none"
+    }
 }
