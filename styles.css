@@ -4,6 +4,7 @@ html, body {
   width: 100%;
   padding: 0;
   margin: 0;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 1150px) {
@@ -20,6 +21,7 @@ html, body {
   width: 100%;
   height: 100%;
   display: flex;
+  filter: blur(2px);
 }
 
 #sidebar {
@@ -30,12 +32,10 @@ html, body {
   padding-right: 45px;
   margin: 35px;
 }
-#sidebar > * + * {
-  margin-bottom: 15px;
-}
 
 .sidebar-header {
   font-weight: 500;
+  font-size: 19px;
 }
 
 #logo-container {
@@ -45,11 +45,12 @@ html, body {
 }
 
 #logo {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 #logo-name {
+  font-size: 24px;
   margin-left: 10px;
   display: inline-block;
 }
@@ -57,6 +58,7 @@ html, body {
 .assignments-list {
   border: 1px solid lightgray;
   border-radius: 4px;
+  margin-bottom: 70px;
 }
 
 .assignment-card {
@@ -87,7 +89,8 @@ html, body {
 
 .button {
   border: none;
-  font-size: 18px;
+  font-size: 14px;
+  padding: 5px 10px;
   font-family: "Nunito";
   border-radius: 6px;
 }
@@ -138,6 +141,7 @@ html, body {
   position: absolute;
   bottom: 0;
   margin-bottom: 0px;
+  font-size: 15px;
   padding: 10px 25px;
 }
 #create-assignment-button img {
@@ -161,11 +165,12 @@ html, body {
   display: inline-block;
 }
 #content-container #assignment-details h2 {
+  font-size: 20px;
   font-weight: 550;
 }
 #content-container #assignment-details div {
   margin-right: 10px;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 5px;
   float: right;
   text-align: right;
@@ -175,10 +180,6 @@ html, body {
   margin-bottom: 35px;
   display: flex;
   justify-content: space-between;
-}
-#content-container #assignment-buttons-container button {
-  font-size: 16px;
-  padding: 5px 10px;
 }
 #content-container #assignment-buttons-container #delete-assignment-button img {
   height: 23px;
@@ -215,7 +216,6 @@ html, body {
 }
 #content-container #file-search-container input {
   font-family: "Nunito";
-  font-size: 16px;
   font-weight: 550;
   flex: 1 0;
   padding: 0 0 0 10px;
@@ -271,6 +271,16 @@ html, body {
 }
 #content-container #files-container #file-time-container {
   width: 25%;
+}
+
+.popup {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid lightgray;
+  border-radius: 8px;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -6,6 +6,7 @@ html, body {
     width: 100%;
     padding: 0;
     margin: 0;
+    font-size: 14px;
 }
 
 @media screen and (max-width: 1150px) {
@@ -33,14 +34,11 @@ html, body {
     border-right: 1px solid lightgray;
     padding-right: 45px;
     margin: 35px;
-
-    & > * + * {
-        margin-bottom: 15px;
-    }
 }
 
 .sidebar-header {
     font-weight: 500;
+    font-size: 19px;
 }
 
 #logo-container {
@@ -50,11 +48,12 @@ html, body {
 }
 
 #logo {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 
 #logo-name {
+    font-size: 24px;
     margin-left: 10px;
     display: inline-block;
 }
@@ -63,6 +62,7 @@ html, body {
     //background: yellow;
     border: 1px solid lightgray;
     border-radius: 4px;
+    margin-bottom: 70px;
 }
 
 .assignment-card {
@@ -96,7 +96,8 @@ html, body {
 .button {
 
     border:none;
-    font-size: 18px;
+    font-size: 14px;
+    padding: 5px 10px;
     font-family: 'Nunito';
     border-radius: 6px;
 
@@ -165,6 +166,7 @@ html, body {
     position: absolute;
     bottom: 0;
     margin-bottom: 0px;
+    font-size: 15px;
     padding: 10px 25px;
     
 }
@@ -188,12 +190,13 @@ html, body {
         }
 
         h2 {
+            font-size: 20px;
             font-weight: 550;
         }
 
         div {
             margin-right: 10px;
-            font-size: 17px;
+            font-size: 15px;
             line-height: 5px;
             float: right;
             text-align: right;
@@ -207,11 +210,6 @@ html, body {
 
         display: flex;
         justify-content: space-between;
-
-        button {
-            font-size: 16px;
-            padding: 5px 10px;
-        }
 
         #delete-assignment-button {
             img {
@@ -262,7 +260,6 @@ html, body {
         input {
 
             font-family: 'Nunito';
-            font-size: 16px;
             font-weight: 550;
             flex: 1 0;
             padding: 0 0 0 10px;
@@ -348,5 +345,18 @@ html, body {
         }
 
     }
+
+}
+
+.popup {
+
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    border: 1px solid lightgray;
+    border-radius: 8px;
 
 }
