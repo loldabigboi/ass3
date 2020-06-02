@@ -17,7 +17,7 @@ html, body {
 
 * {
     transition: background-color 0.15s linear;
-    transition: filter 0.25s linear;
+    transition: filter 0.25s;
 }
 
 .vertically-center-content {
@@ -543,4 +543,13 @@ html, body {
         margin-right: 10px;
     }
 
+}
+
+#deletion-confirmation-popup {
+    width: 250px;
+    text-align: center;
+
+    .danger-button {
+        margin-left: 20px;
+    }
 }

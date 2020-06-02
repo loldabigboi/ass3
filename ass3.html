@@ -58,7 +58,7 @@
                 <button class="button primary-button" id="upload-file-button" onclick="openGroupPopup()">
                     <img src="arrow-bar-up.svg"><span>Upload file..</span>
                 </button>
-                <button class="button danger-button" id="delete-assignment-button">
+                <button class="button danger-button" id="delete-assignment-button" onclick="openConfirmationPopup()">
                     <img src="trash.svg"><span>Delete assignment</span>
                 </button>
             </div>
@@ -199,6 +199,12 @@
         <button class="button exit-button" onclick="closeAssignmentPopup()">
             <img src="cross.svg">
         </button>
+    </div>
+    <div class="popup" id="deletion-confirmation-popup">
+        <p>Are you sure you want to delete this assignment repository? <b>This action cannot be undone.</b></p>
+        <button class="button secondary-button" onclick="closeConfirmationPopup()">Cancel</button>
+        <button class="button danger-button" onclick="closeConfirmationPopup()">Delete</button>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
