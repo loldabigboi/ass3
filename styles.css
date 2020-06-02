@@ -34,27 +34,8 @@ html, body {
   margin-bottom: 15px;
 }
 
-#create-assignment-button {
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 0px;
-  padding: 15px 30px;
-  border: none;
-  background: #2962ff;
-  color: white;
-  font-size: 18px;
-  font-family: "Nunito";
-  border-radius: 6px;
-}
-#create-assignment-button:hover {
-  cursor: pointer;
-  background: #3d71ff;
-}
-#create-assignment-button:active {
-  background: #5280ff;
-}
-#create-assignment-button:focus {
-  outline: none;
+.sidebar-header {
+  font-weight: 500;
 }
 
 #logo-container {
@@ -104,6 +85,66 @@ html, body {
   border-bottom-right-radius: 4px;
 }
 
+.button {
+  border: none;
+  font-size: 18px;
+  font-family: "Nunito";
+  border-radius: 6px;
+}
+.button:hover {
+  cursor: pointer;
+}
+.button:focus {
+  outline: none;
+}
+.button > img, .button span {
+  vertical-align: middle;
+}
+
+.default-button {
+  background: #2962ff;
+  color: white;
+}
+.default-button:hover {
+  background: #3d71ff;
+}
+.default-button:active {
+  background: #1553ff;
+}
+
+.secondary-button {
+  background: #f0f0f0;
+  color: #323232;
+}
+.secondary-button:hover {
+  background: whitesmoke;
+}
+.secondary-button:active {
+  background: #e6e6e6;
+}
+
+.danger-button {
+  background: red;
+  color: white;
+}
+.danger-button:hover {
+  background: #ff3d3d;
+}
+.danger-button:active {
+  background: #eb0000;
+}
+
+#create-assignment-button {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0px;
+  padding: 10px 25px;
+}
+#create-assignment-button img {
+  height: 18px;
+  margin-right: 13px;
+}
+
 #content-container {
   flex: 1 1;
   padding: 20px;
@@ -113,15 +154,52 @@ html, body {
 #content-container > * + * {
   margin-bottom: 10px;
 }
+#content-container #assignment-details {
+  justify-content: space-between;
+}
 #content-container #assignment-details > * {
   display: inline-block;
 }
+#content-container #assignment-details h2 {
+  font-weight: 550;
+}
 #content-container #assignment-details div {
   margin-right: 10px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 5px;
   float: right;
   text-align: right;
+}
+#content-container #assignment-buttons-container {
+  margin-top: 10px;
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: space-between;
+}
+#content-container #assignment-buttons-container button {
+  font-size: 16px;
+  padding: 5px 10px;
+}
+#content-container #assignment-buttons-container #delete-assignment-button img {
+  height: 23px;
+  margin-right: 10px;
+}
+#content-container #assignment-buttons-container #view-group-button img {
+  height: 23px;
+  margin-right: 10px;
+}
+#content-container #share-details-container {
+  display: none;
+  margin-top: 5px;
+  margin-bottom: 35px;
+}
+#content-container #share-details-container p {
+  line-height: 5px;
+  font-size: 16px;
+}
+#content-container #share-details-container #share-list {
+  height: 125px;
+  border: 1px solid lightgray;
 }
 #content-container #file-search-container {
   display: flex;

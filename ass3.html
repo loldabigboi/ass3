@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>title</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap" rel="stylesheet">    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div id="page-container">
@@ -13,7 +12,7 @@
                 <img src="logo.png" id="logo">
                 <h1 id="logo-name">UniDrive</h1>
             </div>
-            <h2>Current assignments:</h2>
+            <h2 class="sidebar-header">Current assignments:</h2>
             <div class="assignments-list" id="curr-assignments">
                 <div class="assignment-card selected-assignment first-assignment">
                     <h4>SOFTENG 350 - Assignment 2</h4>
@@ -26,7 +25,7 @@
                     <p>Grade weighting: 10%</p>
                 </div>
             </div>
-            <h2>Previous assignments:</h2>
+            <h2 class="sidebar-header">Previous assignments:</h2>
             <div class="assignments-list" id="prev-assignments">
                 <div class="assignment-card">
                     <h4>SOFTENG 350 - Assignment 2</h4>
@@ -39,14 +38,30 @@
                     <p>Grade weighting: 10%</p>
                 </div>
             </div>
-            <button id="create-assignment-button">Create new assignment</button>
+            <button class="button default-button" id="create-assignment-button">
+                <img src="plus.png"><span>Create new assignment..</span>
+            </button>
         </div>
         <div id="content-container">
-            <div id="assignment-details">
+            <div class="vertically-center-content" id="assignment-details">
                 <h2>SOFTENG 350 - Assignment 2</h2>
                 <div>
                     <p>Due 6pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
+                </div>
+            </div>
+            <div id="assignment-buttons-container">
+                <button class="button secondary-button" id="view-group-button">
+                    <img src="person.png"><span>View group..</span>
+                </button>
+                <button class="button danger-button" id="delete-assignment-button">
+                    <img src="trashcan.png"><span>Delete assignment</span>
+                </button>
+            </div>
+            <div id="share-details-container">
+                <p>Shared with:</p>
+                <div id="share-list">
+
                 </div>
             </div>
             <div id="file-search-container">
