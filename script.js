@@ -1,7 +1,10 @@
 const group_popup = document.getElementById("group-popup");
 const assignment_popup = document.getElementById("assignment-popup");
 const page_container = document.getElementById("page-container");
-
+const search_bar = document.getElementById('file-search')
+const name_div = document.getElementById('file-name-container')
+const size_div = document.getElementById('file-size-container')
+const time_div = document.getElementById('file-time-container')
 
 let closeGroupPopup = function() {
     group_popup.style.display = "none";
@@ -28,20 +31,25 @@ function openAssignmentPopup() {
 }
 
 function searchFilter() {
-	const bar = document.getElementById('file-search')
-	const name = document.getElementById('file-name-container')
-	const size = document.getElementById('file-size-container')
-	const time = document.getElementById('file-time-container')
-
-	for(i = 1; i < name.children.length; ++i) {
-		if(name.children[i].innerText.toLowerCase().includes(bar.value.toLowerCase()) ) {
-			name.children[i].style.display = ""
-			size.children[i].style.display = ""
-			time.children[i].style.display = ""
+	for(i = 1; i < name_div.children.length; ++i) {
+		if(name_div.children[i].innerText.toLowerCase().includes(search_bar.value.toLowerCase()) ) {
+			name_div.children[i].style.display = ""
+			size_div.children[i].style.display = ""
+			time_div.children[i].style.display = ""
 		} else {
-			name.children[i].style.display = "none"
-			size.children[i].style.display = "none"
-			time.children[i].style.display = "none"
+			name_div.children[i].style.display = "none"
+			size_div.children[i].style.display = "none"
+			time_div.children[i].style.display = "none"
 		}
 	}
+}
+
+function selectAssignment(element) {
+    const selected = document.getElementsByClassName("selected-assignment")[0]
+    selected.classList.remove("selected-assignment")
+    element.classList.add("selected-assignment")
+}
+
+function populate() {
+    
 }

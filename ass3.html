@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>UniDrive</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -15,12 +15,12 @@
             </div>
             <h2 class="sidebar-header">Current assignments:</h2>
             <div class="assignments-list" id="curr-assignments">
-                <div class="assignment-card selected-assignment first-assignment">
+                <div class="assignment-card selected-assignment first-assignment" onclick="selectAssignment(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
                     <p>Due 6pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
-                <div class="assignment-card last-assignment">
+                <div class="assignment-card last-assignment" onclick="selectAssignment(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
                     <p>Due 6pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
@@ -28,12 +28,12 @@
             </div>
             <h2 class="sidebar-header">Previous assignments:</h2>
             <div class="assignments-list" id="prev-assignments">
-                <div class="assignment-card">
+                <div class="assignment-card" onclick="selectAssignment(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
                     <p>Was due 6pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
-                <div class="assignment-card">
+                <div class="assignment-card" onclick="selectAssignment(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
                     <p>Was due 6pm, 9th June</p>
                     <p>Grade weighting: 10%</p>

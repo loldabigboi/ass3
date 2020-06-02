@@ -74,8 +74,6 @@ html, body {
 
 .selected-assignment {
   border-right: 8px solid #2962ff;
-  margin-right: -1px;
-  margin-top: -1px;
 }
 
 .first-assignment {
