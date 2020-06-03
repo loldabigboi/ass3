@@ -104,6 +104,9 @@ html, body {
   font-family: "Nunito";
   border-radius: 6px;
 }
+.button ~ .button {
+  margin-left: 10px;
+}
 .button:hover {
   cursor: pointer;
 }
@@ -179,12 +182,20 @@ html, body {
   border: 1px solid #2962ff;
 }
 
-.clickable:hover, #content-container #files-container .file-container .sort-ribbon:hover {
+.clickable:hover, #content-container #files-container .file-container .file-item:hover, #content-container #files-container .file-container .sort-ribbon:hover {
   background: #fafafa;
   cursor: pointer;
 }
-.clickable:active, #content-container #files-container .file-container .sort-ribbon:active {
+.clickable:active, #content-container #files-container .file-container .file-item:active, #content-container #files-container .file-container .sort-ribbon:active {
   background: whitesmoke;
+}
+
+.hovered {
+  background: #fafafa;
+}
+
+.clicked {
+  background: whitesmoke !important;
 }
 
 #create-assignment-button {
@@ -230,9 +241,6 @@ html, body {
   margin-top: 10px;
   margin-bottom: 35px;
   display: flex;
-}
-#content-container #assignment-buttons-container button ~ button {
-  margin-left: 10px;
 }
 #content-container #assignment-buttons-container #view-group-button img {
   height: 23px;
@@ -303,10 +311,16 @@ html, body {
   width: 19px;
   margin: 0;
 }
-#content-container #files-container .file-container .file-name-item img {
+#content-container #files-container .file-container .file-name-item input {
+  margin-right: 17px;
+}
+#content-container #files-container .file-container .file-name-item > img {
   align-self: center;
   height: 25px;
   margin-right: 25px;
+}
+#content-container #files-container .file-container .file-name-item button {
+  margin-left: auto;
 }
 #content-container #files-container .file-container .file-item {
   height: 30px;

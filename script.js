@@ -13,6 +13,40 @@ const id_dict = {
     "upload-files-popup": document.getElementById("upload-files-popup"),
 }
 
+const file_items = document.getElementsByClassName("file-item");
+const file_containers = document.getElementsByClassName("file-container");
+
+const fileListEventWrapper = function(event, className, add) {
+    const source = event.target || event.srcElement;
+    const index = Array.from(source.parentNode.children).indexOf(source)
+    for (let i_ = 0; i_ < file_containers.length; i_++) {
+        if (add) {
+            file_containers[i_].children[index].classList.add(className);
+        } else {
+            file_containers[i_].children[index].classList.remove(className);
+        } 
+    }
+}
+
+// make each corresponding file item seem linked despite them being in separate divs 
+// (when one is hovered / clicked the entire row darkens)
+for (let i = 0; i < file_items.length; i++) {
+    file_items[i].addEventListener("mouseenter", (event) => {
+        fileListEventWrapper(event, "hovered", true);
+    });
+    file_items[i].addEventListener("mouseleave", (event) => {
+        fileListEventWrapper(event, "hovered", false);
+        fileListEventWrapper(event, "clicked", false);
+    });
+    file_items[i].addEventListener("mousedown", (event) => {
+        fileListEventWrapper(event, "clicked", true);
+    });
+    file_items[i].addEventListener("mouseup", (event) => {
+        fileListEventWrapper(event, "clicked", false);
+    });
+    
+}
+
 let currPopupId = ""
 
 function openPopup(id) {
@@ -72,4 +106,23 @@ function populateFileList(element) {
         size_div.children[4].style.display = "none"
         time_div.children[4].style.display = "none"
     }
+}
+
+function selectAllFiles() {
+
+    const checkboxes = document.getElementsByClassName("file-checkbox");
+    console.log(checkboxes);
+
+    let allSelected = true;
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (!checkboxes[i].checked) {
+            allSelected = false;
+            break;
+        }
+    }
+
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = !allSelected;
+    }
+
 }

@@ -112,6 +112,10 @@ html, body {
     font-family: 'Nunito';
     border-radius: 6px;
 
+    & ~ .button {
+        margin-left: 10px;
+    }
+
     &:hover {
         cursor: pointer;
     }
@@ -219,6 +223,14 @@ html, body {
 
 }
 
+.hovered {
+    background: rgb(250,250,250);
+}
+
+.clicked {
+    background: rgb(245, 245, 245) !important;
+}
+
 #create-assignment-button {
 
     img {
@@ -273,10 +285,6 @@ html, body {
         margin-bottom: 35px;
 
         display: flex;
-
-        button ~ button {
-            margin-left: 10px;
-        }
         
         #view-group-button {
             img {
@@ -378,17 +386,24 @@ html, body {
 
             .file-name-item {
 
+                input {
+                    margin-right: 17px;
+                }
 
-                img {
+                & > img {
                     align-self: center;
                     height: 25px;
                     margin-right: 25px;
                 }
 
+                button {
+                    margin-left: auto;
+                }
+
             }
 
             .file-item {
-
+                @extend .clickable;
                 height: 30px;
                 padding: 15px;
                 border-bottom: 1px solid lightgray;
