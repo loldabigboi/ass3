@@ -1,59 +1,33 @@
-const group_popup = document.getElementById("group-popup");
-const assignment_popup = document.getElementById("assignment-popup");
-const confirmation_popup = document.getElementById("deletion-confirmation-popup");
-const upload_popup = document.getElementById("upload-files-popup");
 const page_container = document.getElementById("page-container");
+const page_cover = document.getElementById("page-cover");
+
 const search_bar = document.getElementById('file-search')
 const name_div = document.getElementById('file-name-container')
 const size_div = document.getElementById('file-size-container')
 const time_div = document.getElementById('file-time-container')
 
-let closeGroupPopup = function() {
-    group_popup.style.display = "none";
-    page_container.style.filter = "none";
-    page_container.removeEventListener("mousedown", closeGroupPopup);
+const id_dict = {
+    "group-popup": document.getElementById("group-popup"),
+    "assignment-popup": document.getElementById("assignment-popup"),
+    "deletion-confirmation-popup": document.getElementById("deletion-confirmation-popup"),
+    "upload-files-popup": document.getElementById("upload-files-popup"),
 }
 
-function openGroupPopup() {
-    group_popup.style.display = "block";
+let currPopupId = ""
+
+function openPopup(id) {
+    currPopupId = id;
+    id_dict[id].style.display = "block";
     page_container.style.filter = "blur(3px)";
-    page_container.addEventListener("mousedown", closeGroupPopup);
+    page_cover.style.display = "block";
+    page_container.addEventListener("mousedown", closePopup);
 }
 
-let closeAssignmentPopup = function() {
-    assignment_popup.style.display = "none";
+let closePopup = function() {
+    id_dict[currPopupId].style.display = "none";
     page_container.style.filter = "none";
-    page_container.removeEventListener("mousedown", closeAssignmentPopup);
-}
-
-function openAssignmentPopup() {
-    assignment_popup.style.display = "block";
-    page_container.style.filter = "blur(3px)";
-    page_container.addEventListener("mousedown", closeAssignmentPopup);
-}
-
-let closeUploadPopup = function() {
-    upload_popup.style.display = "none";
-    page_container.style.filter = "none";
-    page_container.removeEventListener("mousedown", closeUploadPopup);
-}
-
-function openUploadPopup() {
-    upload_popup.style.display = "block";
-    page_container.style.filter = "blur(3px)";
-    page_container.addEventListener("mousedown", closeUploadPopup);
-}
-
-let closeConfirmationPopup = function() {
-    confirmation_popup.style.display = "none";
-    page_container.style.filter = "none";
-    page_container.removeEventListener("mousedown", closeConfirmationPopup);
-}
-
-function openConfirmationPopup() {
-    confirmation_popup.style.display = "block";
-    page_container.style.filter = "blur(3px)";
-    page_container.addEventListener("mousedown", closeConfirmationPopup);
+    page_cover.style.display = "none";
+    page_container.removeEventListener("mousedown", closePopup);
 }
 
 function searchFilter() {
