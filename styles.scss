@@ -386,6 +386,10 @@ html, body {
 
             .file-name-item {
 
+                & > * {
+                    pointer-events: none;
+                }
+
                 input {
                     margin-right: 17px;
                 }
@@ -394,10 +398,6 @@ html, body {
                     align-self: center;
                     height: 25px;
                     margin-right: 25px;
-                }
-
-                button {
-                    margin-left: auto;
                 }
 
             }

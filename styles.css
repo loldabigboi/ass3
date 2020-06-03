@@ -311,6 +311,9 @@ html, body {
   width: 19px;
   margin: 0;
 }
+#content-container #files-container .file-container .file-name-item > * {
+  pointer-events: none;
+}
 #content-container #files-container .file-container .file-name-item input {
   margin-right: 17px;
 }
@@ -318,9 +321,6 @@ html, body {
   align-self: center;
   height: 25px;
   margin-right: 25px;
-}
-#content-container #files-container .file-container .file-name-item button {
-  margin-left: auto;
 }
 #content-container #files-container .file-container .file-item {
   height: 30px;

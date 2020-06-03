@@ -14,6 +14,7 @@ const id_dict = {
 }
 
 const file_items = document.getElementsByClassName("file-item");
+const file_name_items = document.getElementsByClassName("file-name-item");
 const file_containers = document.getElementsByClassName("file-container");
 
 const fileListEventWrapper = function(event, className, add) {
@@ -38,13 +39,26 @@ for (let i = 0; i < file_items.length; i++) {
         fileListEventWrapper(event, "hovered", false);
         fileListEventWrapper(event, "clicked", false);
     });
-    file_items[i].addEventListener("mousedown", (event) => {
+    file_items[i].addEventListener("mousedown", (event) => {   
+
         fileListEventWrapper(event, "clicked", true);
+
     });
     file_items[i].addEventListener("mouseup", (event) => {
         fileListEventWrapper(event, "clicked", false);
     });
     
+}
+
+for (let i = 0; i < file_name_items.length; i++) {
+    file_name_items[i].addEventListener("click", (event) => {
+        var rect = event.target.getBoundingClientRect();
+        var x = event.clientX - rect.left;  // x position within the element.
+        if (x < 55) {
+            const checked = event.target.getElementsByTagName("input")[0].checked;
+            event.target.getElementsByTagName("input")[0].checked = !checked;
+        }     
+    })
 }
 
 let currPopupId = ""
