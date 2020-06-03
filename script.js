@@ -13,6 +13,35 @@ const id_dict = {
     "upload-files-popup": document.getElementById("upload-files-popup"),
 }
 
+const sidebar = document.getElementById("sidebar");
+const sidebar_toggle = document.getElementById("sidebar-toggle-button");
+let wasBelowMin = false;
+window.addEventListener("resize", (event) => {
+    const belowMin = window.innerWidth < 1150;
+    if (belowMin != wasBelowMin) {  //  only do stuff if state has changed
+        wasBelowMin = belowMin;
+        if (belowMin) {
+            sidebar.classList.add("sidebar-slideout");
+            sidebar.classList.add("sidebar-hidden");
+            sidebar_toggle.style.display = "block";
+        } else {
+            resetSidebar();
+        }
+    }
+})
+
+const toggleSidebar = function() {
+    sidebar.classList.toggle("sidebar-hidden");
+    sidebar_toggle.classList.toggle("rotated");
+}
+
+const resetSidebar = function() {
+    sidebar.classList.remove("sidebar-slideout");
+    sidebar.classList.remove("sidebar-hidden");
+    sidebar_toggle.classList.remove("rotated");
+    sidebar_toggle.style.display = "none";
+}
+
 const file_items = document.getElementsByClassName("file-item");
 const file_name_items = document.getElementsByClassName("file-name-item");
 const file_containers = document.getElementsByClassName("file-container");
@@ -137,6 +166,20 @@ function selectAllFiles() {
 
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = !allSelected;
+    }
+
+}
+
+function deleteSelectedFiles() {
+
+    let i = 0;
+    while (i < file_name_items.length) {
+        const file_name_item = file_name_items[i];
+        const del = file_name_item.getElementsByTagName("input").checked;
+        if (del) {
+
+        }
+        i++
     }
 
 }

@@ -11,6 +11,9 @@
     <div id="page-container">
         <div id="page-cover"></div>
         <div id="sidebar">
+            <button class="button" id="sidebar-toggle-button" onclick="toggleSidebar()">
+                <img src="chevron-right.svg">
+            </button>
             <div id="logo-container">
                 <img src="logo.png" id="logo">
                 <h1 id="logo-name">UniDrive</h1>
@@ -162,7 +165,7 @@
             </div>
             <div id="file-button-container">
                 <button class="button secondary-button" onclick="selectAllFiles()">Select all</button>
-                <button class="button danger-button">
+                <button class="button danger-button" onclick="deleteSelectedFiles()">
                     <img src="trash.svg">
                     <span>Delete selected</span>
                 </button>

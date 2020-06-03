@@ -7,11 +7,6 @@ html, body {
   font-size: 14px;
 }
 
-@media screen and (max-width: 1150px) {
-  #sidebar {
-    display: none;
-  }
-}
 * {
   transition: background-color 0.15s linear;
   transition: filter 0.25s;
@@ -36,13 +31,47 @@ html, body {
   z-index: 1;
 }
 
+.sidebar-slideout {
+  position: absolute !important;
+}
+
+.sidebar-hidden {
+  transform: translateX(-100%);
+}
+
 #sidebar {
   position: relative;
   width: 400px;
-  padding: 20px;
+  padding: 45px;
+  bottom: 0;
+  top: 0;
+  background: #fcfcfc;
   border-right: 1px solid lightgray;
-  padding-right: 45px;
-  margin: 35px;
+  transition: transform ease-in-out 1s;
+}
+
+.rotated img {
+  transform: rotateY(180deg);
+}
+
+#sidebar-toggle-button {
+  position: absolute;
+  display: none;
+  left: 100%;
+  padding: 10px 8px;
+  background: #fcfcfc;
+  border: 1px solid lightgray;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#sidebar-toggle-button img {
+  transition: transform ease-in-out 0.3s;
+}
+#sidebar-toggle-button:hover {
+  background: whitesmoke;
+}
+#sidebar-toggle-button:active {
+  background: #e6e6e6;
 }
 
 .sidebar-header {
@@ -76,6 +105,7 @@ html, body {
 .assignment-card {
   padding: 4px 13px;
   line-height: 0px;
+  background: white;
 }
 .assignment-card p {
   line-height: 6px;
@@ -200,8 +230,7 @@ html, body {
 
 #create-assignment-button {
   position: absolute;
-  bottom: 0;
-  margin-bottom: 0px;
+  bottom: 20px;
   font-size: 15px;
   padding: 5px 25px;
   padding-left: 15px;
@@ -215,6 +244,7 @@ html, body {
   flex: 1 1;
   padding: 20px;
   display: flex;
+  margin-left: 30px;
   flex-direction: column;
 }
 #content-container > * + * {
