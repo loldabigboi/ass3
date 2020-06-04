@@ -5,6 +5,7 @@ const search_bar = document.getElementById('file-search')
 const files_list = document.getElementById('files-list')
 const size_div = document.getElementById('file-size-container')
 const time_div = document.getElementById('file-time-container')
+const banner = document.getElementById("assignment-details")
 
 const id_dict = {
     "group-popup": document.getElementById("group-popup"),
@@ -91,6 +92,9 @@ function selectAssignment(element) {
     const selected = document.getElementsByClassName("selected-assignment")[0]
     selected.classList.remove("selected-assignment")
     element.classList.add("selected-assignment")
+    banner.children[0].textContent = element.children[0].innerText
+    banner.children[1].children[0].textContent = element.children[1].innerText
+    banner.children[1].children[1].textContent = element.children[2].innerText
 }
 
 function populateFileList(element) {
