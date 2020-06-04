@@ -7,6 +7,7 @@ const size_div = document.getElementById('file-size-container')
 const time_div = document.getElementById('file-time-container')
 const banner = document.getElementById("assignment-details")
 const container = document.getElementById("files-container")
+const file_name_readonly = document.getElementById('file-name-readonly')
 
 const id_dict = {
     "group-popup": document.getElementById("group-popup"),
@@ -77,6 +78,8 @@ let closePopup = function () {
     page_container.style.filter = "none";
     page_cover.style.display = "none";
     page_container.removeEventListener("mousedown", closePopup);
+
+    file_name_readonly.value = cur_file.name
 }
 
 function searchFilter() {
@@ -218,21 +221,40 @@ function deleteAssignment() {
     document.getElementsByClassName("assignment-card")[1].click()
 }
 
-function fileUpload() {
+var cur_file;
+function fileSelect() {
     var input = document.createElement('input');
     input.type = 'file';
     input.click();
     input.onchange = e => {
-        var file = e.target.files[0];
-
-        input.click();
-        console.log(file.name)
-        console.log(file.size)
-        console.log(file.type)
-        //create a div that matches
-        var div = document.createElement("div");
-        `This is  times easier!`
-        div.innerHTML = `<div class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>42B</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>11:00AM, 7th June</span> </div> </div>`
-        container.appendChild(div);
+        cur_file = e.target.files[0];
+        file_name_readonly.value = cur_file.name
     }
+}
+
+function humanFileSize(bytes, si=false, dp=1) {
+    const thresh = si ? 1000 : 1024;
+    if (Math.abs(bytes) < thresh) {
+      return bytes + 'B';
+    }
+    const units = si
+      ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+      : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+    let u = -1;
+    const r = 10**dp;
+
+    do {
+      bytes /= thresh;
+      ++u;
+    } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
+    return bytes.toFixed(dp) + units[u];
+  }
+
+function fileUpload() {
+        //create a div that matches
+        var d = new Date();
+        var div = document.createElement("div");
+        div.innerHTML = `<div class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${d.toLocaleTimeString()}</span> </div> </div>`
+        container.appendChild(div);
+        file_name_readonly.value = ""
 }
