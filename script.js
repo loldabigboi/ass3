@@ -2,7 +2,7 @@ const page_container = document.getElementById("page-container");
 const page_cover = document.getElementById("page-cover");
 
 const search_bar = document.getElementById('file-search')
-const name_div = document.getElementById('file-name-container')
+const files_list = document.getElementById('files-list')
 const size_div = document.getElementById('file-size-container')
 const time_div = document.getElementById('file-time-container')
 
@@ -16,7 +16,7 @@ const id_dict = {
 const sidebar = document.getElementById("sidebar");
 const sidebar_toggle = document.getElementById("sidebar-toggle-button");
 let wasBelowMin = false;
-window.addEventListener("resize", (event) => {
+let resizeListener = (event) => {
     const belowMin = window.innerWidth < 1150;
     if (belowMin != wasBelowMin) {  //  only do stuff if state has changed
         wasBelowMin = belowMin;
@@ -28,7 +28,9 @@ window.addEventListener("resize", (event) => {
             resetSidebar();
         }
     }
-})
+}
+window.addEventListener("resize", resizeListener);
+window.addEventListener("load", resizeListener);  // to account for when window is small when website first opened
 
 const toggleSidebar = function() {
     sidebar.classList.toggle("sidebar-hidden");
@@ -58,38 +60,6 @@ const fileListEventWrapper = function(event, className, add) {
     }
 }
 
-// make each corresponding file item seem linked despite them being in separate divs 
-// (when one is hovered / clicked the entire row darkens)
-for (let i = 0; i < file_items.length; i++) {
-    file_items[i].addEventListener("mouseenter", (event) => {
-        fileListEventWrapper(event, "hovered", true);
-    });
-    file_items[i].addEventListener("mouseleave", (event) => {
-        fileListEventWrapper(event, "hovered", false);
-        fileListEventWrapper(event, "clicked", false);
-    });
-    file_items[i].addEventListener("mousedown", (event) => {   
-
-        fileListEventWrapper(event, "clicked", true);
-
-    });
-    file_items[i].addEventListener("mouseup", (event) => {
-        fileListEventWrapper(event, "clicked", false);
-    });
-    
-}
-
-for (let i = 0; i < file_name_items.length; i++) {
-    file_name_items[i].addEventListener("click", (event) => {
-        var rect = event.target.getBoundingClientRect();
-        var x = event.clientX - rect.left;  // x position within the element.
-        if (x < 55) {
-            const checked = event.target.getElementsByTagName("input")[0].checked;
-            event.target.getElementsByTagName("input")[0].checked = !checked;
-        }     
-    })
-}
-
 let currPopupId = ""
 
 function openPopup(id) {
@@ -108,15 +78,11 @@ let closePopup = function() {
 }
 
 function searchFilter() {
-	for(i = 1; i < name_div.children.length; ++i) {
-		if(name_div.children[i].innerText.toLowerCase().includes(search_bar.value.toLowerCase()) ) {
-			name_div.children[i].style.display = ""
-			size_div.children[i].style.display = ""
-			time_div.children[i].style.display = ""
+	for(i = 0; i < files_list.children.length; ++i) {
+		if(files_list.children[i].children[0].innerText.toLowerCase().includes(search_bar.value.toLowerCase())) {
+			files_list.children[i].style.display = "flex"
 		} else {
-			name_div.children[i].style.display = "none"
-			size_div.children[i].style.display = "none"
-			time_div.children[i].style.display = "none"
+			files_list.children[i].style.display = "none"
 		}
 	}
 }
@@ -129,32 +95,19 @@ function selectAssignment(element) {
 
 function populateFileList(element) {
     if(element.classList.contains("first-assignment")) {
-        name_div.children[1].style.display = ""
-        size_div.children[1].style.display = ""
-        time_div.children[1].style.display = ""
-        name_div.children[3].style.display = ""
-        size_div.children[3].style.display = ""
-        time_div.children[3].style.display = ""
-        name_div.children[4].style.display = ""
-        size_div.children[4].style.display = ""
-        time_div.children[4].style.display = ""
+        files_list.children[1].style.display = "flex"
+        files_list.children[3].style.display = "flex"
+        files_list.children[4].style.display = "flex"
     } else {
-        name_div.children[1].style.display = "none"
-        size_div.children[1].style.display = "none"
-        time_div.children[1].style.display = "none"
-        name_div.children[3].style.display = "none"
-        size_div.children[3].style.display = "none"
-        time_div.children[3].style.display = "none"
-        name_div.children[4].style.display = "none"
-        size_div.children[4].style.display = "none"
-        time_div.children[4].style.display = "none"
+        files_list.children[1].style.display = "none"
+        files_list.children[3].style.display = "none"
+        files_list.children[4].style.display = "none"
     }
 }
 
 function selectAllFiles() {
 
     const checkboxes = document.getElementsByClassName("file-checkbox");
-    console.log(checkboxes);
 
     let allSelected = true;
     for (let i = 0; i < checkboxes.length; i++) {

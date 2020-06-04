@@ -48,7 +48,7 @@ html, body {
     bottom: 0;
     top: 0;
 
-    background: rgb(252,252,252);
+    background: rgb(251,251,251);
     border-right: 1px solid lightgray;
 
     transition: transform ease-in-out 1s;
@@ -387,86 +387,87 @@ html, body {
 
     }
 
-    #files-container {
+}
 
-        display: flex;
+#files-container {
+    flex: 1 1;
+    border: 1px solid lightgray;
+    border-radius: 6px;
 
-        flex: 1 1;
-        border: 1px solid lightgray;
-        border-radius: 6px;
+}
 
-        .file-container {
+#sort-ribbons-container {
+    width: 100%;
+    display: flex;
+}
 
-            height: 100%;
-            display: inline-block;
+.sort-ribbon {
 
-            .sort-ribbon {
+    @extend .clickable;
 
-                @extend .clickable;
+    display: flex;
+    height: 20px;
+    align-items: center;
+    padding: 5px 10px;
 
-                justify-content: space-between;
-
-                height: 35px;
-                padding: 0px 15px;
-                border-bottom: 1px solid lightgray;
-
-                div {
-                    float: left;
-                }
-
-                img {
-                    float: right;
-                    width: 19px;
-                    margin: 0;
-                }
-            }
-
-            .file-name-item {
-
-                & > * {
-                    pointer-events: none;
-                }
-
-                input {
-                    margin-right: 17px;
-                }
-
-                & > img {
-                    align-self: center;
-                    height: 25px;
-                    margin-right: 25px;
-                }
-
-            }
-
-            .file-item {
-                @extend .clickable;
-                height: 30px;
-                padding: 15px;
-                border-bottom: 1px solid lightgray;
-
-            }
-
-        }
-
-        .file-container ~ .file-container {
-            border-left: 1px solid lightgray;
-        }
-
-        #file-name-container {
-            width: 50%;
-        }
-
-        #file-size-container {
-            width: 25%;
-        }
-
-        #file-time-container {
-            width: 25%;
-        }
-
+    border-bottom: 1px solid lightgray;
+    & ~ & {
+        border-left: 1px solid lightgray;
     }
 
+    img {
+        margin-left: auto;
+    }
+}
+
+.file-name-column {
+    width: 50%;
+}
+
+.file-size-column {
+    width: 20%;
+}
+
+.file-time-column {
+    width: 30%;
+}
+
+.file-item {
+    @extend .clickable;
+    display: flex;
+    border-bottom: 1px solid lightgray;
+    height: 45px;
+}
+
+.file-item-section {
+
+    padding: 10px;
+    align-items: center;
+    display: flex;
+
+    & ~ & {
+        border-left: 1px solid lightgray;
+    }
+
+    // label which overlaps checkbox to increase click size
+    label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+    }
+
+    // to account for size of label overlapping checkbox in the file name section
+    &:first-child {
+        padding-left: 0;
+        padding-right: 20px;
+    }
+
+    img {
+        width: 25px;
+        margin-right: 10px;
+    }
 }
 
 .popup {

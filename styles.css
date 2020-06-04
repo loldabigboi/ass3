@@ -45,7 +45,7 @@ html, body {
   padding: 45px;
   bottom: 0;
   top: 0;
-  background: #fcfcfc;
+  background: #fbfbfb;
   border-right: 1px solid lightgray;
   transition: transform ease-in-out 1s;
 }
@@ -212,11 +212,11 @@ html, body {
   border: 1px solid #2962ff;
 }
 
-.clickable:hover, #content-container #files-container .file-container .file-item:hover, #content-container #files-container .file-container .sort-ribbon:hover {
+.clickable:hover, .file-item:hover, .sort-ribbon:hover {
   background: #fafafa;
   cursor: pointer;
 }
-.clickable:active, #content-container #files-container .file-container .file-item:active, #content-container #files-container .file-container .sort-ribbon:active {
+.clickable:active, .file-item:active, .sort-ribbon:active {
   background: whitesmoke;
 }
 
@@ -317,57 +317,72 @@ html, body {
   flex: 1 0;
   padding: 0 0 0 10px;
 }
-#content-container #files-container {
-  display: flex;
+
+#files-container {
   flex: 1 1;
   border: 1px solid lightgray;
   border-radius: 6px;
 }
-#content-container #files-container .file-container {
-  height: 100%;
-  display: inline-block;
+
+#sort-ribbons-container {
+  width: 100%;
+  display: flex;
 }
-#content-container #files-container .file-container .sort-ribbon {
-  justify-content: space-between;
-  height: 35px;
-  padding: 0px 15px;
+
+.sort-ribbon {
+  display: flex;
+  height: 20px;
+  align-items: center;
+  padding: 5px 10px;
   border-bottom: 1px solid lightgray;
 }
-#content-container #files-container .file-container .sort-ribbon div {
-  float: left;
-}
-#content-container #files-container .file-container .sort-ribbon img {
-  float: right;
-  width: 19px;
-  margin: 0;
-}
-#content-container #files-container .file-container .file-name-item > * {
-  pointer-events: none;
-}
-#content-container #files-container .file-container .file-name-item input {
-  margin-right: 17px;
-}
-#content-container #files-container .file-container .file-name-item > img {
-  align-self: center;
-  height: 25px;
-  margin-right: 25px;
-}
-#content-container #files-container .file-container .file-item {
-  height: 30px;
-  padding: 15px;
-  border-bottom: 1px solid lightgray;
-}
-#content-container #files-container .file-container ~ .file-container {
+.sort-ribbon ~ .sort-ribbon {
   border-left: 1px solid lightgray;
 }
-#content-container #files-container #file-name-container {
+.sort-ribbon img {
+  margin-left: auto;
+}
+
+.file-name-column {
   width: 50%;
 }
-#content-container #files-container #file-size-container {
-  width: 25%;
+
+.file-size-column {
+  width: 20%;
 }
-#content-container #files-container #file-time-container {
-  width: 25%;
+
+.file-time-column {
+  width: 30%;
+}
+
+.file-item {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+  height: 45px;
+}
+
+.file-item-section {
+  padding: 10px;
+  align-items: center;
+  display: flex;
+}
+.file-item-section ~ .file-item-section {
+  border-left: 1px solid lightgray;
+}
+.file-item-section label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+}
+.file-item-section:first-child {
+  padding-left: 0;
+  padding-right: 20px;
+}
+.file-item-section img {
+  width: 25px;
+  margin-right: 10px;
 }
 
 .popup {

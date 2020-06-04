@@ -78,88 +78,95 @@
                 <input class="input" id="file-search" type="text" placeholder="Search files.." oninput="searchFilter()">
             </div>
             <div id="files-container">
-                <div class="file-container" id="file-name-container">
-                    <div class="sort-ribbon vertically-center-content">
-                        <div>File name</div>
+                <div id="sort-ribbons-container">
+                    <div class="file-name-column sort-ribbon">
+                        <span>File name</span>
                         <img src="down-arrow.svg">
                     </div>
-                    <div class="file-item file-name-item vertically-center-content">
-                        <input class="file-checkbox" type="checkbox">
-                        <img src="file-earmark-text.svg">
-                        <div>file.txt</div>
+                    <div class="file-size-column sort-ribbon">
+                        <span>File size</span>
+                        <img src="down-arrow.svg">
                     </div>
-                    <div class="file-item file-name-item vertically-center-content">
-                        <input class="file-checkbox" type="checkbox">
-                        <img src="file-earmark-text.svg">
-                        <div>file3.txt</div>
-                    </div>
-                    <div class="file-item file-name-item vertically-center-content">
-                        <input class="file-checkbox" type="checkbox">
-                        <img src="file-earmark-text.svg">
-                        <div>Meeting_Notes.txt</div>
-                    </div>
-                    <div class="file-item file-name-item vertically-center-content">
-                        <input class="file-checkbox" type="checkbox">
-                        <img src="file-earmark-text.svg">
-                        <div>Group_essay.pdf</div>
-                    </div>
-                    <div class="file-item file-name-item vertically-center-content">
-                        <input class="file-checkbox" type="checkbox">
-                        <img src="file-earmark-code.svg">
-                        <div>script.js</div>
-                    </div>
-                    <div class="file-item file-name-item vertically-center-content">
-                        <input class="file-checkbox" type="checkbox">
-                        <img src="file-earmark-spreadsheet.svg">
-                        <div>user_data.xlsx</div>
+                    <div class="file-time-column sort-ribbon">
+                        <span>Time of upload</span>
+                        <img src="down-arrow.svg">
                     </div>
                 </div>
-                <div class="file-container" id="file-size-container">
-                    <div class="sort-ribbon vertically-center-content">
-                        <div>File size</div>
-                        <img src="down-arrow.svg">
+                <div id="files-list">
+                    <div class="file-item">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-text.svg">
+                            <span>file1.txt</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>20.2MB</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>8:00AM, 12th June</span>
+                        </div>
                     </div>
-                    <div class="file-item vertically-center-content">
-                        35KB
+                    <div class="file-item">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-text.svg">
+                            <span>file1.txt</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>20.2MB</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>8:00AM, 12th June</span>
+                        </div>
                     </div>
-                    <div class="file-item vertically-center-content">
-                        106B
+                    <div class="file-item">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-text.svg">
+                            <span>file1.txt</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>20.2MB</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>8:00AM, 12th June</span>
+                        </div>
                     </div>
-                    <div class="file-item vertically-center-content">
-                        2.3MB
+                    <div class="file-item">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-text.svg">
+                            <span>file1.txt</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>20.2MB</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>8:00AM, 12th June</span>
+                        </div>
                     </div>
-                    <div class="file-item vertically-center-content">
-                        3.1MB
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        204B
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        11KB
-                    </div>
-                </div>
-                <div class="file-container" id="file-time-container">
-                    <div class="sort-ribbon vertically-center-content">
-                        <div>Upload time</div>
-                        <img src="down-arrow.svg">
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        5:34PM, 31st May
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        8:40AM, 29th May
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        11:13AM, 30th May
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        11:10AM, 31st May
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        08:11AM, 15th June
-                    </div>
-                    <div class="file-item vertically-center-content">
-                        015:12AM, 18th June
+                    <div class="file-item">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-text.svg">
+                            <span>file1.txt</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>20.2MB</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>8:00AM, 12th June</span>
+                        </div>
                     </div>
                 </div>
             </div>
