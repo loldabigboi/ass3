@@ -7,7 +7,7 @@ const size_div = document.getElementById('file-size-container')
 const time_div = document.getElementById('file-time-container')
 const ribbons_container = document.getElementById("sort-ribbons-container");
 const banner = document.getElementById("assignment-details")
-const container = document.getElementById("files-container")
+const container = document.getElementById("files-list")
 const file_name_readonly = document.getElementById('file-name-readonly')
 
 const id_dict = {
@@ -271,4 +271,7 @@ function fileUpload() {
         div.innerHTML = `<div class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${d.toLocaleTimeString()}</span> </div> </div>`
         container.appendChild(div);
         file_name_readonly.value = ""
+
+        // update contents of file list
+        files_list = document.getElementById('files-list')
 }
