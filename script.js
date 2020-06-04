@@ -157,46 +157,11 @@ function sortFiles(src) {
     let sortFunc;
     if (type === "name") {
         sortFunc = function(e1, e2) {
-            return e1.innerText.localeCompare(e2.innerText)
-        }
-    } else if (type === "size") {
-        sortFunc = function(e1, e2) {
-            let fileSizeText1 = e1.children[1].innerText.trim();
-            let fileSizeText2 = e2.children[1].innerText.trim();
-
-            const parseFileSize = (fileSizeText) => {
-                let numBytes = "";
-                let char;
-                for (let i = 0; i < fileSizeText.length; i++) {
-                    if (char = fileSizeText.charAt(i)) {
-                        if (char >= '0' && char <= '9') {
-                            numBytes += char;
-                        } else if (char != '.') {
-
-                            numBytes = Number.parseInt(numBytes);
-                            let byteType = char;
-                            if (char = fileSizeText.charAt(i + 1)) {
-                                byteType += char;
-                                if (byteType == "KB") {
-                                    numBytes *= 1000
-                                } else if (byteType == "MB") {
-                                    numBytes *= 1000000
-                                } else {
-                                    console.log(byteType);
-                                    throw Error("only b, kb or mb allowed");
-                                }
-                            }
-                            
-                            return numBytes;
-                        }
-                    }
-                }
-            }
-            return parseFileSize(fileSizeText1) - parseFileSize(fileSizeText2);
+            return e1.innerText.localeCompare(e2.innerText);
         }
     } else {
         sortFunc = function(e1, e2) {
-            return Number(e1.getAttribute("data-date-ord")) - Number(e2.getAttribute("data-date-ord"));
+            return Number(e1.getAttribute("data-" + type + "-ord")) - Number(e2.getAttribute("data-" + type + "-ord"));
         }
     }
 
@@ -205,12 +170,6 @@ function sortFiles(src) {
     let array = [];
     for (let i = 0; i < elems.length; i++) {
         array[i] = elems[i].cloneNode(true);
-    }
-
-    // perform sort
-    array.sort(sortFunc);
-    if (reverseDict[type]) { // reverse if required
-        array.reverse();
     }
 
      // set button reverse state and reset all other button reverse states
@@ -226,6 +185,12 @@ function sortFiles(src) {
             sort_ribbon.classList.toggle("reversed");
         }
         
+    }
+
+    // perform sort
+    array.sort(sortFunc);
+    if (reverseDict[type]) { // reverse if required
+        array.reverse();
     }
 
     for (let i = 0; i < array.length; i++) { 
@@ -265,7 +230,7 @@ function humanFileSize(bytes, si=false, dp=1) {
       ++u;
     } while (Math.round(Math.abs(bytes) * r) / r >= thresh && u < units.length - 1);
     return bytes.toFixed(dp) + units[u];
-  }
+}
 
 // set at 100 in case number of default files changed
 let currDateOrd = 100;
@@ -301,7 +266,7 @@ function fileUpload() {
         const dateStr = timeStr + ', ' + dayStr + ' ' + monthStr;
         
         files_list.appendChild(div);
-        div.outerHTML = `<div data-date-ord=\"${currDateOrd++}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
+        div.outerHTML = `<div data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
 
         file_name_readonly.value = ""
 }
