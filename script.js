@@ -268,10 +268,34 @@ function fileUpload() {
         //create a div that matches
         var d = new Date();
         var div = document.createElement("div");
-        div.innerHTML = `<div class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${d.toLocaleTimeString()}</span> </div> </div>`
+
+        const day = d.getDay();
+        let daySuffix;
+        switch (day % 10) {
+            case 1:  daySuffix = "st";
+            case 2:  daySuffix = "nd";
+            case 3:  daySuffix = "rd";
+            default: daySuffix = "th";
+        }
+        const dayStr = day + daySuffix;
+        const monthStr = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"][d.getMonth()];
+
+        let H = Number.parseInt(d.toTimeString().substr(0, 2));
+        let timeSuffix = "AM"
+        if (H > 12) {
+            timeSuffix = "PM";
+            H = H % 12
+        }
+
+        let M = d.getMinutes();
+        if (M <= 9) {  // buffer with leading zeros
+            M = "0" + M;
+        }
+        const timeStr = H + ":" + M + timeSuffix;
+        const dateStr = timeStr + ', ' + dayStr + ' ' + monthStr;
+        
+        div.innerHTML = `<div class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
         container.appendChild(div);
         file_name_readonly.value = ""
-
-        // update contents of file list
-        files_list = document.getElementById('files-list')
 }
