@@ -206,3 +206,9 @@ function sortFiles(type) {
     }
 
 }
+
+// Deletes the selected assignment and selects the second (hardcode)
+function deleteAssignment() {
+    document.getElementsByClassName("selected-assignment")[0].style.display = "none"
+    document.getElementsByClassName("assignment-card")[1].click()
+}
