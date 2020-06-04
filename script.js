@@ -7,7 +7,6 @@ const size_div = document.getElementById('file-size-container')
 const time_div = document.getElementById('file-time-container')
 const ribbons_container = document.getElementById("sort-ribbons-container");
 const banner = document.getElementById("assignment-details")
-const container = document.getElementById("files-list")
 const file_name_readonly = document.getElementById('file-name-readonly')
 
 const id_dict = {
@@ -160,7 +159,7 @@ function sortFiles(src) {
         sortFunc = function(e1, e2) {
             return e1.innerText.localeCompare(e2.innerText)
         }
-    } else {
+    } else if (type === "size") {
         sortFunc = function(e1, e2) {
             let fileSizeText1 = e1.children[1].innerText.trim();
             let fileSizeText2 = e2.children[1].innerText.trim();
@@ -194,6 +193,10 @@ function sortFiles(src) {
                 }
             }
             return parseFileSize(fileSizeText1) - parseFileSize(fileSizeText2);
+        }
+    } else {
+        sortFunc = function(e1, e2) {
+            return Number(e1.getAttribute("data-date-ord")) - Number(e2.getAttribute("data-date-ord"));
         }
     }
 
@@ -264,6 +267,8 @@ function humanFileSize(bytes, si=false, dp=1) {
     return bytes.toFixed(dp) + units[u];
   }
 
+// set at 100 in case number of default files changed
+let currDateOrd = 100;
 function fileUpload() {
         //create a div that matches
         var d = new Date();
@@ -295,7 +300,8 @@ function fileUpload() {
         const timeStr = H + ":" + M + timeSuffix;
         const dateStr = timeStr + ', ' + dayStr + ' ' + monthStr;
         
-        div.innerHTML = `<div class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
-        container.appendChild(div);
+        files_list.appendChild(div);
+        div.outerHTML = `<div data-date-ord=\"${currDateOrd++}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
+
         file_name_readonly.value = ""
 }
