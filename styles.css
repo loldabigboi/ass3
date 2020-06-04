@@ -375,6 +375,10 @@ html, body {
   justify-content: center;
   height: 40px;
   width: 40px;
+  cursor: pointer;
+}
+.file-item-section input {
+  cursor: pointer;
 }
 .file-item-section:first-child {
   padding-left: 0;

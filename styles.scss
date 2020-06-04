@@ -456,6 +456,11 @@ html, body {
         justify-content: center;
         height: 40px;
         width: 40px;
+        cursor: pointer;
+    }
+
+    input {
+        cursor: pointer;
     }
 
     // to account for size of label overlapping checkbox in the file name section

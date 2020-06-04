@@ -136,3 +136,73 @@ function deleteSelectedFiles() {
     }
 
 }
+
+let reverseDict = {
+    "name": false,
+    "size": false,
+    "date": false
+}
+
+function sortFiles(type) {
+
+    let sortFunc;
+    if (type === "name") {
+        sortFunc = function(e1, e2) {
+            return Number(e1.children[0].innerText) - Number(e2.children[0].innerText);
+        }
+    } else {
+        sortFunc = function(e1, e2) {
+            let fileSizeText1 = e1.children[1].innerText;
+            let fileSizeText2 = e1.children[1].innerText;
+
+            const parseFileSize = (fileSizeText) => {
+                let numBytes = "";
+                while (true) {
+                    let char;
+                    if (char = fileSizeText.charAt(i)) {
+                        if (char >= '0' && char <= '9') {
+                            numBytes += char;
+                        } else if (char != '.') {
+
+                            numBytes = Number.parseInt(numBytes);
+                            let byteType = char;
+                            if (char = fileSizeText.charAt(i+1)) {
+                                byteType += char;
+                            }
+
+                            if (byteType === "KB") {
+                                numBytes *= 1000
+                            } else if (byteType === "MB") {
+                                numBytes *= 1000000
+                            } else {
+                                throw Error("only b, kb or mb allowed");
+                            }
+                            return numBytes;
+
+                        }
+                    }
+                }
+            }
+            return parseFileSize(fileSizeText1) - parseFileSize(fileSizeText2);
+        }
+    }
+
+    let elems = document.getElementById("file-list").children;
+
+    let array = [];
+    for (let i = 0; i < elems.length; i++) { 
+        array[i] = elems[i].cloneNode(true);
+    }
+
+    // perform sort
+    array.sort(sortFunc);
+    if (reverseDict[type]) { // reverse if required
+        array.reverse();
+    }
+    [type] = !reverseDict[type];
+
+    for (let i = 0; i < array.length; i++) { 
+        document.getElementById("file-list").replaceChild(array[i], elems[i]);
+    }
+
+}
