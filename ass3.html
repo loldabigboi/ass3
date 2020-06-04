@@ -79,15 +79,15 @@
             </div>
             <div id="files-container">
                 <div id="sort-ribbons-container">
-                    <div class="file-name-column sort-ribbon">
+                    <div data-type="name" class="file-name-column sort-ribbon" onclick="sortFiles(this)">
                         <span>File name</span>
                         <img src="down-arrow.svg">
                     </div>
-                    <div class="file-size-column sort-ribbon">
+                    <div data-type="size" class="file-size-column sort-ribbon" onclick="sortFiles(this)">
                         <span>File size</span>
                         <img src="down-arrow.svg">
                     </div>
-                    <div class="file-time-column sort-ribbon">
+                    <div data-type="time" class="file-time-column sort-ribbon" onclick="sortFiles(this)">
                         <span>Time of upload</span>
                         <img src="down-arrow.svg">
                     </div>

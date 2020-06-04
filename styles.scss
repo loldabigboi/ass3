@@ -409,6 +409,7 @@ html, body {
     height: 20px;
     align-items: center;
     padding: 5px 10px;
+    user-select: none;
 
     border-bottom: 1px solid lightgray;
     & ~ & {
@@ -417,6 +418,12 @@ html, body {
 
     img {
         margin-left: auto;
+    }
+}
+
+.reversed {
+    img {
+        transform: rotate(180deg);
     }
 }
 

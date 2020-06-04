@@ -334,6 +334,7 @@ html, body {
   height: 20px;
   align-items: center;
   padding: 5px 10px;
+  user-select: none;
   border-bottom: 1px solid lightgray;
 }
 .sort-ribbon ~ .sort-ribbon {
@@ -341,6 +342,10 @@ html, body {
 }
 .sort-ribbon img {
   margin-left: auto;
+}
+
+.reversed img {
+  transform: rotate(180deg);
 }
 
 .file-name-column {

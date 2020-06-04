@@ -1,10 +1,11 @@
 const page_container = document.getElementById("page-container");
 const page_cover = document.getElementById("page-cover");
 
-const search_bar = document.getElementById('file-search')
-const files_list = document.getElementById('files-list')
-const size_div = document.getElementById('file-size-container')
-const time_div = document.getElementById('file-time-container')
+const search_bar = document.getElementById('file-search');
+const files_list = document.getElementById('files-list');
+const ribbons_container = document.getElementById("sort-ribbons-container");
+const size_div = document.getElementById('file-size-container');
+const time_div = document.getElementById('file-time-container');
 
 const id_dict = {
     "group-popup": document.getElementById("group-popup"),
@@ -143,22 +144,23 @@ let reverseDict = {
     "date": false
 }
 
-function sortFiles(type) {
+function sortFiles(src) {
 
+    let type = src.getAttribute('data-type');
     let sortFunc;
     if (type === "name") {
         sortFunc = function(e1, e2) {
-            return Number(e1.children[0].innerText) - Number(e2.children[0].innerText);
+            return e1.innerText.localeCompare(e2.innerText)
         }
     } else {
         sortFunc = function(e1, e2) {
-            let fileSizeText1 = e1.children[1].innerText;
-            let fileSizeText2 = e1.children[1].innerText;
+            let fileSizeText1 = e1.children[1].innerText.trim();
+            let fileSizeText2 = e2.children[1].innerText.trim();
 
             const parseFileSize = (fileSizeText) => {
                 let numBytes = "";
-                while (true) {
-                    let char;
+                let char;
+                for (let i = 0; i < fileSizeText.length; i++) {
                     if (char = fileSizeText.charAt(i)) {
                         if (char >= '0' && char <= '9') {
                             numBytes += char;
@@ -168,17 +170,17 @@ function sortFiles(type) {
                             let byteType = char;
                             if (char = fileSizeText.charAt(i+1)) {
                                 byteType += char;
+                                if (byteType == "KB") {
+                                    numBytes *= 1000
+                                } else if (byteType == "MB") {
+                                    numBytes *= 1000000
+                                } else {
+                                    console.log(byteType);
+                                    throw Error("only b, kb or mb allowed");
+                                }
                             }
-
-                            if (byteType === "KB") {
-                                numBytes *= 1000
-                            } else if (byteType === "MB") {
-                                numBytes *= 1000000
-                            } else {
-                                throw Error("only b, kb or mb allowed");
-                            }
+                            
                             return numBytes;
-
                         }
                     }
                 }
@@ -187,7 +189,7 @@ function sortFiles(type) {
         }
     }
 
-    let elems = document.getElementById("file-list").children;
+    let elems = files_list.children;
 
     let array = [];
     for (let i = 0; i < elems.length; i++) { 
@@ -199,10 +201,24 @@ function sortFiles(type) {
     if (reverseDict[type]) { // reverse if required
         array.reverse();
     }
-    [type] = !reverseDict[type];
+
+     // set button reverse state and reset all other button reverse states
+    for (let i = 0; i < ribbons_container.children.length; i++) {
+
+        const sort_ribbon = ribbons_container.children[i];
+        let ribbon_type = sort_ribbon.getAttribute("data-type");
+        if (ribbon_type != type) {
+            reverseDict[ribbon_type] = false
+            sort_ribbon.classList.remove("reversed");
+        } else {
+            reverseDict[ribbon_type] = !reverseDict[ribbon_type]
+            sort_ribbon.classList.toggle("reversed");
+        }
+        
+    }
 
     for (let i = 0; i < array.length; i++) { 
-        document.getElementById("file-list").replaceChild(array[i], elems[i]);
+        files_list.replaceChild(array[i], elems[i]);
     }
 
 }
