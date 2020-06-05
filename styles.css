@@ -12,6 +12,10 @@ html, body {
   transition: filter 0.25s;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .vertically-center-content {
   display: flex;
   align-items: center;

@@ -20,14 +20,14 @@
             </div>
             <h2 class="sidebar-header">Current assignments:</h2>
             <div class="assignments-list" id="curr-assignments">
-                <div class="assignment-card clickable selected-assignment first-assignment" onclick="selectAssignment(this); populateFileList(this)">
+                <div data-assignment-id="0" class="assignment-card clickable selected-assignment first-assignment" onclick="selectAssignment(this); populateFileList(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
-                    <p>Due 6pm, 9th June</p>
+                    <p>Due 6:00pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
-                <div class="assignment-card clickable last-assignment" onclick="selectAssignment(this); populateFileList(this)">
+                <div data-assignment-id="1" class="assignment-card clickable last-assignment" onclick="selectAssignment(this); populateFileList(this)">
                     <h4>SOFTENG 364 - Assignment 2</h4>
-                    <p>Due 6pm, 8th June</p>
+                    <p>Due 11:59pm, 10th June</p>
                     <p>Grade weighting: 15%</p>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             <div class="vertically-center-content" id="assignment-details">
                 <h2>SOFTENG 350 - Assignment 2</h2>
                 <div>
-                    <p>Due 6pm, 9th June</p>
+                    <p>Due 6:00pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div id="files-list">
-                    <div data-time-ord="2" data-size-ord="42" class="file-item">
+                    <div data-assignment-id="0" data-time-ord="2" data-size-ord="42" class="file-item">
                         <div class="file-item-section file-name-item file-name-column">
                             <label>
                                 <input class="file-checkbox" type="checkbox">
@@ -108,7 +108,7 @@
                             <span>11:00AM, 7th May</span>
                         </div>
                     </div>
-                    <div data-time-ord="4" data-size-ord="20200000" class="file-item">
+                    <div data-assignment-id="0" data-time-ord="4" data-size-ord="20200000" class="file-item">
                         <div class="file-item-section file-name-item file-name-column">
                             <label>
                                 <input class="file-checkbox" type="checkbox">
@@ -123,7 +123,7 @@
                             <span>8:30PM, 18th May</span>
                         </div>
                     </div>
-                    <div data-time-ord="0" data-size-ord="2800000" class="file-item">
+                    <div data-assignment-id="0" data-time-ord="0" data-size-ord="2800000" class="file-item">
                         <div class="file-item-section file-name-item file-name-column">
                             <label>
                                 <input class="file-checkbox" type="checkbox">
@@ -138,7 +138,7 @@
                             <span>12:05PM, 28th April</span>
                         </div>
                     </div>
-                    <div data-time-ord="3" data-size-ord="7000" class="file-item">
+                    <div data-assignment-id="0" data-time-ord="3" data-size-ord="7000" class="file-item">
                         <div class="file-item-section file-name-item file-name-column">
                             <label>
                                 <input class="file-checkbox" type="checkbox">
@@ -153,7 +153,7 @@
                             <span>3:37PM, 12th May</span>
                         </div>
                     </div>
-                    <div data-time-ord="1" data-size-ord="15700" class="file-item">
+                    <div data-assignment-id="0" data-time-ord="1" data-size-ord="15700" class="file-item">
                         <div class="file-item-section file-name-item file-name-column">
                             <label>
                                 <input class="file-checkbox" type="checkbox">
@@ -168,11 +168,56 @@
                             <span>1:25PM, 3rd May</span>
                         </div>
                     </div>
+                    <div data-assignment-id="1" data-time-ord="2" data-size-ord="2000" class="file-item hidden">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-code.svg">
+                            <span>styles.css</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>2KB</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>12:06PM, 1st June</span>
+                        </div>
+                    </div>
+                    <div data-assignment-id="1" data-time-ord="1" data-size-ord="3600" class="file-item hidden">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-code.svg">
+                            <span>index.html</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>3.6KB</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>8:47AM, 28th May</span>
+                        </div>
+                    </div>
+                    <div data-assignment-id="1" data-time-ord="0" data-size-ord="560" class="file-item hidden">
+                        <div class="file-item-section file-name-item file-name-column">
+                            <label>
+                                <input class="file-checkbox" type="checkbox">
+                            </label>
+                            <img src="file-earmark-text.svg">
+                            <span>README.txt</span>
+                        </div>
+                        <div class="file-item-section file-size-item file-size-column">
+                            <span>560B</span>
+                        </div>
+                        <div class="file-item-section file-time-item file-time-column">
+                            <span>11:56PM, 27th May</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="file-button-container">
                 <button class="button secondary-button" onclick="selectAllFiles()">Select all</button>
-                <button class="button danger-button" onclick="deleteSelectedFiles()">
+                <button id="delete-files-button" class="button danger-button" onclick="deleteSelectedFiles()">
                     <img src="trash.svg">
                     <span>Delete selected</span>
                 </button>

@@ -2,12 +2,12 @@ const page_container = document.getElementById("page-container");
 const page_cover = document.getElementById("page-cover");
 
 const search_bar = document.getElementById('file-search')
+const curr_assignments = document.getElementById('curr-assignments');
 const files_list = document.getElementById('files-list')
 const size_div = document.getElementById('file-size-container')
 const time_div = document.getElementById('file-time-container')
 const ribbons_container = document.getElementById("sort-ribbons-container");
 const banner = document.getElementById("assignment-details")
-const file_name_readonly = document.getElementById('file-name-readonly')
 
 const id_dict = {
     "group-popup": document.getElementById("group-popup"),
@@ -78,8 +78,6 @@ let closePopup = function () {
     page_container.style.filter = "none";
     page_cover.style.display = "none";
     page_container.removeEventListener("mousedown", closePopup);
-
-    file_name_readonly.value = cur_file.name
 }
 
 function searchFilter() {
@@ -93,8 +91,10 @@ function searchFilter() {
 }
 
 function selectAssignment(element) {
-    const selected = document.getElementsByClassName("selected-assignment")[0]
-    selected.classList.remove("selected-assignment")
+    const selected = document.getElementsByClassName("selected-assignment")[0];
+    if (selected) {
+        selected.classList.remove("selected-assignment")
+    }
     element.classList.add("selected-assignment")
     banner.children[0].textContent = element.children[0].innerText
     banner.children[1].children[0].textContent = element.children[1].innerText
@@ -102,14 +102,12 @@ function selectAssignment(element) {
 }
 
 function populateFileList(element) {
-    if (element.classList.contains("first-assignment")) {
-        files_list.children[1].style.display = "flex"
-        files_list.children[3].style.display = "flex"
-        files_list.children[4].style.display = "flex"
-    } else {
-        files_list.children[1].style.display = "none"
-        files_list.children[3].style.display = "none"
-        files_list.children[4].style.display = "none"
+    for (let i = 0; i < files_list.children.length; i++) {
+        if (files_list.children[i].getAttribute("data-assignment-id") === element.getAttribute("data-assignment-id")) {
+            files_list.children[i].classList.remove("hidden");
+        } else {
+            files_list.children[i].classList.add("hidden");
+        }
     }
 }
 
@@ -133,15 +131,18 @@ function selectAllFiles() {
 
 function deleteSelectedFiles() {
 
-    let i = 0;
-    while (i < file_name_items.length) {
-        const file_name_item = file_name_items[i];
-        const del = file_name_item.getElementsByTagName("input").checked;
-        if (del) {
-
+    let toDelete = [];
+    for (let i = 0; i < files_list.children.length; i++) {
+        const file_item = files_list.children[i];
+        console.log(file_item);
+        if (file_item.getElementsByTagName("input")[0].checked) {
+            toDelete.push(file_item);
         }
-        i++
     }
+
+    toDelete.forEach((item) => {
+        files_list.removeChild(item);
+    })
 
 }
 
@@ -201,8 +202,8 @@ function sortFiles(src) {
 
 // Deletes the selected assignment and selects the second (hardcode)
 function deleteAssignment() {
-    document.getElementsByClassName("selected-assignment")[0].style.display = "none"
-    document.getElementsByClassName("assignment-card")[1].click()
+    curr_assignments.removeChild(document.getElementsByClassName("selected-assignment")[0]);
+    curr_assignments.children[0].click()
 }
 
 var cur_file;
@@ -212,7 +213,6 @@ function fileSelect() {
     input.click();
     input.onchange = e => {
         cur_file = e.target.files[0];
-        file_name_readonly.value = cur_file.name
     }
 }
 
@@ -268,5 +268,4 @@ function fileUpload() {
         files_list.appendChild(div);
         div.outerHTML = `<div data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
 
-        file_name_readonly.value = ""
 }
