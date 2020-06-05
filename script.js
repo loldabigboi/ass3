@@ -89,6 +89,7 @@ function searchFilter() {
         if (files_list.children[i].children[0].innerText.toLowerCase().includes(search_bar.value.toLowerCase())) {
             files_list.children[i].style.display = "flex"
         } else {
+            files_list.children[i].getElementsByTagName("input")[0].checked = false;
             files_list.children[i].style.display = "none"
         }
     }
@@ -99,6 +100,7 @@ function populateFileList(element) {
         if (files_list.children[i].getAttribute("data-assignment-id") === element.getAttribute("data-assignment-id")) {
             files_list.children[i].classList.remove("hidden");
         } else {
+            files_list.children[i].getElementsByTagName("input")[0].checked = false;
             files_list.children[i].classList.add("hidden");
         }
     }
@@ -117,7 +119,10 @@ function selectAllFiles() {
     }
 
     for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = !allSelected;
+        const file_item = checkboxes[i].parentElement.parentElement.parentElement;
+        if (!file_item.classList.contains("hidden")) {  // only toggle if file not hidden
+            checkboxes[i].checked = !allSelected;
+        }
     }
 
 }
@@ -141,7 +146,7 @@ function deleteSelectedFiles() {
 let reverseDict = {
     "name": false,
     "size": false,
-    "date": false
+    "time": false
 }
 
 function sortFiles(src) {
