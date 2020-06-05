@@ -155,7 +155,7 @@ function sortFiles(src) {
     let sortFunc;
     if (type === "name") {
         sortFunc = function(e1, e2) {
-            return e1.innerText.localeCompare(e2.innerText);
+            return e1.innerText.trim().localeCompare(e2.innerText.trim());
         }
     } else {
         sortFunc = function(e1, e2) {
