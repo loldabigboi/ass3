@@ -248,7 +248,7 @@ function removeMember(src) {
 }
 
 let randomNames = [
-    "Jane Doe", "Janice Smith",
+    "Janice Smith", "Kenny McCormick",
     "John Doe", "Richard Rick",
     "Richard Milos", "Henry Yoke",
     "Petra Linkov", "Sven Nev",
@@ -261,9 +261,10 @@ let randomNames = [
     "Chef Boyardee", "Ewan Tempero",
     "Franku Fillth", "Bakh Khoussainov"
 ]
+let nameIndex = 0;
 function inviteGroupMember(popupId, src) {
 
-    const name = randomNames[Math.floor(Math.random() * randomNames.length)]
+    const name = randomNames[nameIndex++ % randomNames.length];
     const dateStr = getFormattedDate();
 
     const div = document.createElement("div");
