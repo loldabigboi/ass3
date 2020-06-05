@@ -329,8 +329,18 @@ function createAssignment(src) {
 
 // Deletes the selected assignment and selects the second (hardcode)
 function deleteAssignment() {
-    curr_assignments.removeChild(document.getElementsByClassName("selected-assignment")[0]);
-    curr_assignments.children[0].click()
+    const selected_assignment = document.getElementsByClassName("selected-assignment")[0]
+    selected_assignment.parentElement.removeChild(selected_assignment);
+
+    if (selected_assignment.classList.contains("selected-assignment")) {
+        try {
+            document.getElementsByClassName("assignment-card")[0].click()
+        } catch (e) {
+            // no assignments left
+            files_list.innerHTML = "";  // clear file list
+        }
+    }
+    
 }
 
 var cur_file;
