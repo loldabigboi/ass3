@@ -287,10 +287,18 @@ function inviteGroupMember(popupId, src) {
 
 }
 
-function createAssignment() {
+function createAssignment(src) {
 
     const newId = currId++;
     memberDict[newId] = ["John Smith (you)  -  Owner"];
+    const member_list = document.getElementById("assignment-popup").getElementsByClassName("group-member-list")[0];
+    for (let i = 0; i < member_list.children.length; i++) {
+        const member_item = member_list.children[i];
+        memberDict[newId].push(member_item.getElementsByTagName("span")[0].innerText);
+    }
+
+    // clear invited group member list
+    member_list.innerHTML = "";
 
     const assignmentStr = document.getElementById("course-name-input").value + " - " +
                           document.getElementById("assignment-name-input").value;
@@ -299,14 +307,19 @@ function createAssignment() {
                     document.getElementById("month-input").value;
     const gradeStr = document.getElementById("assignment-grade-input").value;
 
+    // clear all inputs
+    const inputs = document.getElementById("assignment-popup").getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+    }
 
 
     const div = document.createElement("div");
     curr_assignments.appendChild(div);
     div.outerHTML = `
-    <div data-assignment-id="${newId}" class="assignment-card clickable" onclick="selectAssignment(this)">
+    <div data-assignment-id="${newId}" class="assignment-card clickable" onclick="selectAssignment(this); populateFileList(this)">
         <h4>${assignmentStr}</h4>
-        <p>${dateStr}</p>
+        <p>Due ${dateStr}</p>
         <p>Grade weighting: ${gradeStr}</p>
     </div>`
 

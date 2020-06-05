@@ -588,16 +588,18 @@ html, body {
 
     input {
         width: 100%;
-        margin-left: 10px;
         display: inline-block;
     }
 
     & > p {
+        line-height: 5px;
+        font-weight: 700;
         margin-top: 30px;
     }
 
     .group-member-list {
         height: 240px;
+        margin-bottom: 10px;
     }
 
     .primary-button {
