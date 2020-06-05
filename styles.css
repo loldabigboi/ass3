@@ -118,17 +118,15 @@ html, body {
 .assignment-card ~ .assignment-card {
   border-top: 1px solid lightgray;
 }
+.assignment-card:first-child {
+  border-top-right-radius: 4px;
+}
+.assignment-card:last-child {
+  border-bottom-right-radius: 4px;
+}
 
 .selected-assignment {
   border-right: 8px solid #2962ff;
-}
-
-.first-assignment {
-  border-top-right-radius: 4px;
-}
-
-.last-assignment {
-  border-bottom-right-radius: 4px;
 }
 
 .button {
@@ -425,8 +423,9 @@ html, body {
   padding: 8px 20px;
 }
 
-#group-member-list {
+.group-member-list {
   border: 1px solid lightgray;
+  overflow-y: auto;
   height: 380px;
   margin-bottom: 30px;
 }
@@ -448,20 +447,20 @@ html, body {
   margin-top: 0;
 }
 
-#email-input-container {
+.email-input-container {
   position: relative;
   height: 45px;
   border: 1px solid lightgray;
   justify-content: space-between;
 }
-#email-input-container input {
+.email-input-container input {
   width: 100%;
   margin: 0;
   padding: 10px;
   height: calc(100% - 20px);
   border: none;
 }
-#email-input-container button {
+.email-input-container button {
   position: absolute;
   height: 80%;
   right: 5px;
@@ -469,7 +468,7 @@ html, body {
 }
 
 #assignment-popup {
-  width: 320px;
+  width: 620px;
 }
 #assignment-popup h3 {
   line-height: 5px;
@@ -479,6 +478,12 @@ html, body {
   width: 100%;
   margin-left: 10px;
   display: inline-block;
+}
+#assignment-popup > p {
+  margin-top: 30px;
+}
+#assignment-popup .group-member-list {
+  height: 240px;
 }
 #assignment-popup .primary-button {
   float: right;
@@ -516,6 +521,7 @@ html, body {
 #upload-files-popup div input {
   box-sizing: border-box;
   flex: 1;
+  padding-left: 10px;
   border-radius: 4px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;

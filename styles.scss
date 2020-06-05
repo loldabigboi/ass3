@@ -127,22 +127,23 @@ html, body {
         line-height: 6px;
         padding-left: 20px;
     }
+    
     & ~ & {
         border-top: 1px solid lightgray;
+    }
+
+    &:first-child {
+        border-top-right-radius: 4px;
+    }
+
+    &:last-child {
+        border-bottom-right-radius: 4px;
     }
 
 }
 
 .selected-assignment {
     border-right: 8px solid $base-color;
-}
-
-.first-assignment {
-    border-top-right-radius: 4px;
-}
-
-.last-assignment {
-    border-bottom-right-radius: 4px;
 }
 
 .button {
@@ -522,8 +523,9 @@ html, body {
 
 }
 
-#group-member-list {
+.group-member-list {
     border: 1px solid lightgray;
+    overflow-y: auto;
     height: 380px;
     margin-bottom: 30px;
 }
@@ -549,7 +551,7 @@ html, body {
     }
 }
 
-#email-input-container {
+.email-input-container {
 
     position: relative;
     height: 45px;
@@ -577,7 +579,7 @@ html, body {
 
 #assignment-popup {
 
-    width: 320px;
+    width: 620px;
 
     h3 {
         line-height: 5px;
@@ -588,6 +590,14 @@ html, body {
         width: 100%;
         margin-left: 10px;
         display: inline-block;
+    }
+
+    & > p {
+        margin-top: 30px;
+    }
+
+    .group-member-list {
+        height: 240px;
     }
 
     .primary-button {
@@ -637,6 +647,7 @@ html, body {
         input {
             box-sizing: border-box;
             flex: 1;
+            padding-left: 10px;
             border-radius: 4px;
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;

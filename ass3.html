@@ -20,12 +20,12 @@
             </div>
             <h2 class="sidebar-header">Current assignments:</h2>
             <div class="assignments-list" id="curr-assignments">
-                <div data-assignment-id="0" class="assignment-card clickable selected-assignment first-assignment" onclick="selectAssignment(this); populateFileList(this)">
+                <div data-assignment-id="0" class="assignment-card clickable selected-assignment" onclick="selectAssignment(this); populateFileList(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
                     <p>Due 6:00pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
-                <div data-assignment-id="1" class="assignment-card clickable last-assignment" onclick="selectAssignment(this); populateFileList(this)">
+                <div data-assignment-id="1" class="assignment-card clickable" onclick="selectAssignment(this); populateFileList(this)">
                     <h4>SOFTENG 364 - Assignment 2</h4>
                     <p>Due 11:59pm, 10th June</p>
                     <p>Grade weighting: 15%</p>
@@ -33,12 +33,12 @@
             </div>
             <h2 class="sidebar-header">Previous assignments:</h2>
             <div class="assignments-list" id="prev-assignments">
-                <div class="assignment-card clickable" onclick="selectAssignment(this)">
+                <div data-assignment-id="2" class="assignment-card clickable" onclick="selectAssignment(this); populateFileList(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
                     <p>Was due 6pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
-                <div class="assignment-card clickable" onclick="selectAssignment(this)">
+                <div data-assignment-id="3" class="assignment-card clickable" onclick="selectAssignment(this); populateFileList(this)">
                     <h4>SOFTENG 350 - Assignment 2</h4>
                     <p>Was due 6pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
@@ -226,22 +226,21 @@
     </div>
     <div class="popup" id="group-popup">
         <h3>Current group members:</h3>
-        <div id="group-member-list">
+        <div class="group-member-list">
             <div class="group-member-item vertically-center-content">
                 <img src="person.svg">
                 <span>John Smith (you)  -  Owner</span>
             </div>
             <div class="group-member-item vertically-center-content">
                 <img src="person.svg">
-                <span>Jane Smith  -  Joined 3/05/2020, at 3:57pm</span>
-                <button class="button danger-button">Remove</button>
+                <span>Jane Doe  -  Joined 3/05/2020, at 3:57pm</span>
+                <button class="button danger-button" onclick="removeMember(this)">Remove</button>
             </div>
-
         </div>
         <p>Add another group member:</p>
-        <div class="vertically-center-content" id="email-input-container">
+        <div class="vertically-center-content email-input-container">
             <input class="input" placeholder="email@myemail.com" maxlength=64>
-            <button class="button primary-button">Send invite</button>
+            <button class="button primary-button" onclick="inviteGroupMember('group-popup', this)">Send invite</button>
         </div>
         <button class="button secondary-button" onclick="closePopup('group-popup')">Back</button>
         <button class="button exit-button" onclick="closePopup()">
@@ -251,10 +250,13 @@
     <div class="popup" id="assignment-popup">
         <h3>Create a new assignment</h3>
         <div class="field-container">
-            <span>Course name: </span><input type="text" class="input">
+            <span>Course name: </span><input id="course-name-input" type="text" class="input">
         </div>
         <div class="field-container">
-            <span>Assignment name: </span><input type="text" class="input">
+            <span>Assignment name: </span><input id="assignment-name-input" type="text" class="input">
+        </div>
+        <div class="field-container">
+            <span>Grade weighting (%): </span><input id="assignment-grade-input" type="text" class="input">
         </div>
         <div id="date-field-container" class="field-container">
             <span>Due date: </span>
@@ -262,9 +264,20 @@
             <input id="day-input" type="text" class="input" placeholder="Day">
             <input id="month-input" type="text" class="input" placeholder="Month">
         </div>
+        <p>Invite group members:</p>
+        <div class="group-member-list">
+            <div class="group-member-item vertically-center-content">
+                <img src="person.svg">
+                <span>John Smith (you)  -  Owner</span>
+            </div>
+        </div>
+        <div class="vertically-center-content email-input-container">
+            <input class="input" placeholder="email@myemail.com" maxlength=64>
+            <button class="button primary-button" onclick="inviteGroupMember('assignment-popup', this)">Send invite</button>
+        </div>
         <div id="button-container">
             <button class="button secondary-button" onclick="closePopup()">Cancel</button>
-            <button class="button primary-button">Create</button>
+            <button class="button primary-button" onclick="createAssignment()">Create</button>
         </div>
         <button class="button exit-button" onclick="closePopup()">
             <img src="cross.svg">

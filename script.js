@@ -66,6 +66,10 @@ const fileListEventWrapper = function (event, className, add) {
 let currPopupId = ""
 
 function openPopup(id) {
+    if (id === "upload-files-popup") {
+        // reset file name field
+        document.getElementById("file-name-readonly").value = "";
+    }
     currPopupId = id;
     id_dict[id].style.display = "block";
     page_container.style.filter = "blur(3px)";
@@ -88,17 +92,6 @@ function searchFilter() {
             files_list.children[i].style.display = "none"
         }
     }
-}
-
-function selectAssignment(element) {
-    const selected = document.getElementsByClassName("selected-assignment")[0];
-    if (selected) {
-        selected.classList.remove("selected-assignment")
-    }
-    element.classList.add("selected-assignment")
-    banner.children[0].textContent = element.children[0].innerText
-    banner.children[1].children[0].textContent = element.children[1].innerText
-    banner.children[1].children[1].textContent = element.children[2].innerText
 }
 
 function populateFileList(element) {
@@ -134,7 +127,6 @@ function deleteSelectedFiles() {
     let toDelete = [];
     for (let i = 0; i < files_list.children.length; i++) {
         const file_item = files_list.children[i];
-        console.log(file_item);
         if (file_item.getElementsByTagName("input")[0].checked) {
             toDelete.push(file_item);
         }
@@ -200,6 +192,124 @@ function sortFiles(src) {
 
 }
 
+let memberDict = {
+    0: ["John Smith (you)  -  Owner", "Jane Doe -  Joined 3/05/2020, at 3:57PM"],
+    1: ["John Smith (you)  -  Owner", "Sven Nev -  Joined 2/05/2020, at 8:16PM"],
+    2: ["John Smith (you)  -  Owner", "Denise Nuhts -  Joined 28/04/2020, at 9:40AM"],
+    3: ["John Smith (you)  -  Owner", "Denise Nuhts -  Joined 23/04/2020, at 11:10PM", "Ricardo Milos -  Joined 23/04/2020, at 5:08PM"],
+}
+
+let currAssignmentId = 0;
+function selectAssignment(element) {
+    const selected = document.getElementsByClassName("selected-assignment")[0];
+    if (selected) {
+        selected.classList.remove("selected-assignment")
+    }
+
+    currAssignmentId = element.getAttribute("data-assignment-id");
+    element.classList.add("selected-assignment")
+    banner.children[0].textContent = element.children[0].innerText
+    banner.children[1].children[0].textContent = element.children[1].innerText
+    banner.children[1].children[1].textContent = element.children[2].innerText
+
+    const group_popup = document.getElementById("group-popup");
+    const member_list = group_popup.getElementsByClassName("group-member-list")[0];
+
+    // remove elements until number of elements in list <= number of user strings in memberDict entry
+    for (let i = memberDict[currAssignmentId].length; i < member_list.children.length; i++) {
+        member_list.removeChild(member_list.lastElementChild);
+    }
+
+    for (let i = 0; i < memberDict[currAssignmentId].length; i++) {
+        const member_item = member_list.children[i];
+        if (!member_item) {
+            const div = document.createElement("div");
+            member_list.appendChild(div)
+            div.outerHTML = `
+            <div class="group-member-item vertically-center-content">
+                <img src="person.svg">
+                <span>${memberDict[currAssignmentId][i]}</span>
+                <button class="button danger-button" onclick="removeMember(this)">Remove</button>
+            </div>
+            `
+        }else {
+            member_item.getElementsByTagName("span")[0].innerText = memberDict[currAssignmentId][i];
+        }
+    }
+}
+
+function removeMember(src) {
+
+    const memberItem = src.parentNode;
+    const itemIndex = Array.from(memberItem.parentNode.children).indexOf(memberItem)
+    memberItem.parentNode.removeChild(memberItem);
+    memberDict[currAssignmentId].splice(itemIndex, 1);
+
+}
+
+let randomNames = [
+    "Jane Doe", "Janice Smith",
+    "John Doe", "Richard Rick",
+    "Richard Milos", "Henry Yoke",
+    "Petra Linkov", "Sven Nev",
+    "Jef Name", "Wiz Kid",
+    "Yah Yeet", "Andreas Knapp",
+    "Link Frost", "Jackson Ayling-Campbell",
+    "Henry Greg", "Nick Willemsen",
+    "Denver Broncos", "Gerald Weber",
+    "Lucy Lu", "Danielle Lotridge",
+    "Chef Boyardee", "Ewan Tempero",
+    "Franku Fillth", "Bakh Khoussainov"
+]
+function inviteGroupMember(popupId, src) {
+
+    const name = randomNames[Math.floor(Math.random() * randomNames.length)]
+    const dateStr = getFormattedDate();
+
+    const div = document.createElement("div");
+
+    const memberList = document.getElementById(popupId).getElementsByClassName("group-member-list")[0];
+    memberList.appendChild(div);
+    div.outerHTML = `
+    <div class="group-member-item vertically-center-content">
+        <img src="person.svg">
+        <span>${name} - Invited ${dateStr}</span>
+        <button class="button danger-button" onclick="removeMember(this)">Remove</button>
+    </div>
+    `;
+
+    // reset email field contents
+    src.previousElementSibling.value = "";
+
+}
+
+function createAssignment() {
+
+    const newId = currId++;
+    memberDict[newId] = ["John Smith (you)  -  Owner"];
+
+    const assignmentStr = document.getElementById("course-name-input").value + " - " +
+                          document.getElementById("assignment-name-input").value;
+    const dateStr = document.getElementById("time-input") .value + " " +
+                    document.getElementById("day-input")  .value + " " +
+                    document.getElementById("month-input").value;
+    const gradeStr = document.getElementById("assignment-grade-input").value;
+
+
+
+    const div = document.createElement("div");
+    curr_assignments.appendChild(div);
+    div.outerHTML = `
+    <div data-assignment-id="${newId}" class="assignment-card clickable" onclick="selectAssignment(this)">
+        <h4>${assignmentStr}</h4>
+        <p>${dateStr}</p>
+        <p>Grade weighting: ${gradeStr}</p>
+    </div>`
+
+    closePopup();
+
+}
+
 // Deletes the selected assignment and selects the second (hardcode)
 function deleteAssignment() {
     curr_assignments.removeChild(document.getElementsByClassName("selected-assignment")[0]);
@@ -213,6 +323,7 @@ function fileSelect() {
     input.click();
     input.onchange = e => {
         cur_file = e.target.files[0];
+        document.getElementById("file-name-readonly").value = cur_file.name
     }
 }
 
@@ -232,40 +343,46 @@ function humanFileSize(bytes, si=false, dp=1) {
     return bytes.toFixed(dp) + units[u];
 }
 
-// set at 100 in case number of default files changed
+function getFormattedDate() {
+
+    var d = new Date();
+    const day = d.getDay();
+    let daySuffix;
+    switch (day % 10) {
+        case 1:  daySuffix = "st";
+        case 2:  daySuffix = "nd";
+        case 3:  daySuffix = "rd";
+        default: daySuffix = "th";
+    }
+    const dayStr = day + daySuffix;
+    const monthStr = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"][d.getMonth()];
+
+    let H = Number.parseInt(d.toTimeString().substr(0, 2));
+    let timeSuffix = "AM"
+    if (H > 12) {
+        timeSuffix = "PM";
+        H = H % 12
+    }
+
+    let M = d.getMinutes();
+    if (M <= 9) {  // buffer with leading zeros
+        M = "0" + M;
+    }
+    const timeStr = H + ":" + M + timeSuffix;
+    return timeStr + ', ' + dayStr + ' ' + monthStr;
+
+}
+
+// set at 100 in case number of default files / assignments changed
 let currDateOrd = 100;
+let currId = 100;
 function fileUpload() {
-        //create a div that matches
-        var d = new Date();
-        var div = document.createElement("div");
+    //create a div that matches
+    var div = document.createElement("div");
 
-        const day = d.getDay();
-        let daySuffix;
-        switch (day % 10) {
-            case 1:  daySuffix = "st";
-            case 2:  daySuffix = "nd";
-            case 3:  daySuffix = "rd";
-            default: daySuffix = "th";
-        }
-        const dayStr = day + daySuffix;
-        const monthStr = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"][d.getMonth()];
-
-        let H = Number.parseInt(d.toTimeString().substr(0, 2));
-        let timeSuffix = "AM"
-        if (H > 12) {
-            timeSuffix = "PM";
-            H = H % 12
-        }
-
-        let M = d.getMinutes();
-        if (M <= 9) {  // buffer with leading zeros
-            M = "0" + M;
-        }
-        const timeStr = H + ":" + M + timeSuffix;
-        const dateStr = timeStr + ', ' + dayStr + ' ' + monthStr;
-        
-        files_list.appendChild(div);
-        div.outerHTML = `<div data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
-
+    const dateStr = getFormattedDate();
+    
+    files_list.appendChild(div);
+    div.outerHTML = `<div data-assignment-id=\"${currAssignmentId}\"data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
 }
