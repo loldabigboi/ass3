@@ -270,16 +270,20 @@ function inviteGroupMember(popupId, src) {
 
     const memberList = document.getElementById(popupId).getElementsByClassName("group-member-list")[0];
     memberList.appendChild(div);
+    const memberText = `${name} - Invited ${dateStr}`
     div.outerHTML = `
     <div class="group-member-item vertically-center-content">
         <img src="person.svg">
-        <span>${name} - Invited ${dateStr}</span>
+        <span>${memberText}</span>
         <button class="button danger-button" onclick="removeMember(this)">Remove</button>
     </div>
     `;
 
     // reset email field contents
     src.previousElementSibling.value = "";
+
+    // add member text to memberDict
+    memberDict[currAssignmentId].push(memberText);
 
 }
 
