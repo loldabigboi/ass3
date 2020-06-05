@@ -279,6 +279,8 @@ function inviteGroupMember(popupId, src) {
     </div>
     `;
 
+    memberList.scrollTop = memberList.scrollHeight;  // scroll to bottom of member list
+
     // reset email field contents
     src.previousElementSibling.value = "";
 
