@@ -541,11 +541,11 @@ html, body {
   margin-right: 10px;
 }
 
-#deletion-confirmation-popup {
+#deletion-confirmation-popup, #file-deletion-confirmation-popup {
   width: 250px;
   text-align: center;
 }
-#deletion-confirmation-popup .danger-button {
+#deletion-confirmation-popup .danger-button, #file-deletion-confirmation-popup .danger-button {
   margin-left: 20px;
 }
 
