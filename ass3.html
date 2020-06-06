@@ -34,14 +34,14 @@
             <h2 class="sidebar-header">Previous assignments:</h2>
             <div class="assignments-list" id="prev-assignments">
                 <div data-assignment-id="2" class="assignment-card clickable" onclick="selectAssignment(this); populateFileList(this)">
-                    <h4>SOFTENG 350 - Assignment 2</h4>
-                    <p>Was due 6pm, 9th June</p>
+                    <h4>SOFTENG 351 - Assignment 1</h4>
+                    <p>Was due 6pm, 4th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
                 <div data-assignment-id="3" class="assignment-card clickable" onclick="selectAssignment(this); populateFileList(this)">
-                    <h4>SOFTENG 350 - Assignment 2</h4>
-                    <p>Was due 6pm, 9th June</p>
-                    <p>Grade weighting: 10%</p>
+                    <h4>SOFTENG 350 - Assignment 1</h4>
+                    <p>Was due 6pm, 2nd June</p>
+                    <p>Grade weighting: 15  %</p>
                 </div>
             </div>
             <button class="button primary-button" id="create-assignment-button" onclick="openPopup('assignment-popup')">
@@ -63,7 +63,7 @@
                 <button class="button primary-button" id="upload-file-button" onclick="openPopup('upload-files-popup')">
                     <img src="arrow-bar-up.svg"><span>Upload files..</span>
                 </button>
-                <button class="button danger-button" id="delete-assignment-button" onclick="openPopup('deletion-confirmation-popup')">
+                <button class="button danger-button" id="delete-assignment-button" onclick="openPopup('assignment-deletion-confirmation-popup')">
                     <img src="trash.svg"><span>Delete assignment</span>
                 </button>
             </div>
@@ -262,7 +262,7 @@
             </div>
             <div id="file-button-container">
                 <button class="button secondary-button" onclick="selectAllFiles()">Select all</button>
-                <button id="delete-files-button" class="button danger-button" onclick="deleteSelectedFiles()">
+                <button id="delete-files-button" class="button danger-button" onclick="openPopup('file-deletion-confirmation-popup')">
                     <img src="trash.svg">
                     <span>Delete selected</span>
                 </button>
@@ -324,7 +324,7 @@
             <img src="cross.svg">
         </button>
     </div>
-    <div class="popup" id="deletion-confirmation-popup">
+    <div class="popup" id="assignment-deletion-confirmation-popup">
         <p>Are you sure you want to delete this assignment repository? <b>This action cannot be undone.</b></p>
         <button class="button secondary-button" onclick="closePopup()">Cancel</button>
         <button class="button danger-button" onclick="closePopup();deleteAssignment()">Delete</button>
@@ -337,6 +337,11 @@
         </div>
         <button class="button secondary-button" onclick="closePopup()">Back</button>
         <button class="button primary-button" onclick="closePopup();fileUpload()">Upload</button>
+    </div>
+    <div class="popup" id="file-deletion-confirmation-popup">
+        <p>Are you sure you want to delete these file(s) <b>This action cannot be undone.</b></p>
+        <button class="button secondary-button" onclick="closePopup()">Cancel</button>
+        <button class="button danger-button" onclick="closePopup();deleteSelectedFiles()">Delete</button>
     </div>
   </body>
   <script src="script.js"></script>

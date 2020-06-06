@@ -1,3 +1,4 @@
+//Global variables of commonly used HTML elements
 const page_container = document.getElementById("page-container");
 const page_cover = document.getElementById("page-cover");
 
@@ -9,19 +10,22 @@ const time_div = document.getElementById('file-time-container')
 const ribbons_container = document.getElementById("sort-ribbons-container");
 const banner = document.getElementById("assignment-details")
 
+// Dictionary of commonly used popups
 const id_dict = {
     "group-popup": document.getElementById("group-popup"),
     "assignment-popup": document.getElementById("assignment-popup"),
-    "deletion-confirmation-popup": document.getElementById("deletion-confirmation-popup"),
+    "assignment-deletion-confirmation-popup": document.getElementById("assignment-deletion-confirmation-popup"),
+    "file-deletion-confirmation-popup": document.getElementById("file-deletion-confirmation-popup"),
     "upload-files-popup": document.getElementById("upload-files-popup"),
 }
 
+// Close the side bar after window is resized below 1150px
 const sidebar = document.getElementById("sidebar");
 const sidebar_toggle = document.getElementById("sidebar-toggle-button");
 let wasBelowMin = false;
 let resizeListener = (event) => {
     const belowMin = window.innerWidth < 1150;
-    if (belowMin != wasBelowMin) {  //  only do stuff if state has changed
+    if (belowMin != wasBelowMin) {
         wasBelowMin = belowMin;
         if (belowMin) {
             sidebar.classList.add("sidebar-slideout");
@@ -35,11 +39,13 @@ let resizeListener = (event) => {
 window.addEventListener("resize", resizeListener);
 window.addEventListener("load", resizeListener);  // to account for when window is small when website first opened
 
+// Hide the side bar
 const toggleSidebar = function () {
     sidebar.classList.toggle("sidebar-hidden");
     sidebar_toggle.classList.toggle("rotated");
 }
 
+// Reset the side bar class state (make visible)
 const resetSidebar = function () {
     sidebar.classList.remove("sidebar-slideout");
     sidebar.classList.remove("sidebar-hidden");
@@ -63,11 +69,11 @@ const fileListEventWrapper = function (event, className, add) {
     }
 }
 
+// Open a popup with and perform id dependant actions
 let currPopupId = ""
-
 function openPopup(id) {
     if (id === "upload-files-popup") {
-        // reset file name field
+        // Reset file name field
         document.getElementById("file-name-readonly").value = "";
     }
     currPopupId = id;
@@ -77,6 +83,7 @@ function openPopup(id) {
     page_container.addEventListener("mousedown", closePopup);
 }
 
+// Close a popup
 let closePopup = function () {
     id_dict[currPopupId].style.display = "none";
     page_container.style.filter = "none";
@@ -84,6 +91,7 @@ let closePopup = function () {
     page_container.removeEventListener("mousedown", closePopup);
 }
 
+// Filter file list based on user input
 function searchFilter() {
     for (i = 0; i < files_list.children.length; ++i) {
         if (files_list.children[i].children[0].innerText.toLowerCase().includes(search_bar.value.toLowerCase())) {
@@ -95,6 +103,7 @@ function searchFilter() {
     }
 }
 
+// Populate file list with the files associated with the selected assignment
 function populateFileList(element) {
     for (let i = 0; i < files_list.children.length; i++) {
         if (files_list.children[i].getAttribute("data-assignment-id") === element.getAttribute("data-assignment-id")) {
@@ -106,8 +115,8 @@ function populateFileList(element) {
     }
 }
 
+// Select all the files in the current file window
 function selectAllFiles() {
-
     const checkboxes = document.getElementsByClassName("file-checkbox");
 
     let allSelected = true;
@@ -128,8 +137,8 @@ function selectAllFiles() {
 
 }
 
+// Delete files if they are `checked`
 function deleteSelectedFiles() {
-
     let toDelete = [];
     for (let i = 0; i < files_list.children.length; i++) {
         const file_item = files_list.children[i];
@@ -150,6 +159,7 @@ let reverseDict = {
     "time": false
 }
 
+// Sort files based on their properties (name, size, date)
 function sortFiles(src) {
 
     let type = src.getAttribute('data-type');
@@ -183,7 +193,6 @@ function sortFiles(src) {
             reverseDict[ribbon_type] = !reverseDict[ribbon_type]
             sort_ribbon.classList.toggle("reversed");
         }
-        
     }
 
     // perform sort
@@ -205,6 +214,7 @@ let memberDict = {
     3: ["John Smith (you)  -  Owner", "Denise Nuhts -  Joined 23/04/2020, at 11:10PM", "Ricardo Milos -  Joined 23/04/2020, at 5:08PM"],
 }
 
+// Select an assignment
 let currAssignmentId = 0;
 function selectAssignment(element) {
     const selected = document.getElementsByClassName("selected-assignment")[0];
@@ -214,6 +224,7 @@ function selectAssignment(element) {
 
     currAssignmentId = element.getAttribute("data-assignment-id");
     element.classList.add("selected-assignment")
+    // Update assignment details in banner/header
     banner.children[0].textContent = element.children[0].innerText
     banner.children[1].children[0].textContent = element.children[1].innerText
     banner.children[1].children[1].textContent = element.children[2].innerText
@@ -226,6 +237,7 @@ function selectAssignment(element) {
         member_list.removeChild(member_list.lastElementChild);
     }
 
+    // Update the elements associated with the selected assignment
     for (let i = 0; i < memberDict[currAssignmentId].length; i++) {
         const member_item = member_list.children[i];
         if (!member_item) {
@@ -244,8 +256,8 @@ function selectAssignment(element) {
     }
 }
 
+// Remove a member from the assignment
 function removeMember(src) {
-
     const memberItem = src.parentNode;
     const itemIndex = Array.from(memberItem.parentNode.children).indexOf(memberItem)
     memberItem.parentNode.removeChild(memberItem);
@@ -253,6 +265,7 @@ function removeMember(src) {
 
 }
 
+// A pool of names
 let randomNames = [
     "Janice Smith", "Kenny McCormick",
     "John Doe", "Richard Rick",
@@ -267,6 +280,8 @@ let randomNames = [
     "Chef Boyardee", "Ewan Tempero",
     "Franku Fillth", "Bakh Khoussainov"
 ]
+
+// Invite group members. Input for email is ignored and names are pulled from randomNames
 let nameIndex = 0;
 function inviteGroupMember(popupId, src) {
 
@@ -296,7 +311,8 @@ function inviteGroupMember(popupId, src) {
 
 }
 
-function createAssignment(src) {
+// Create an assignment from an assignment popup and place it on the main screen
+function createAssignment() {
 
     const newId = currId++;
     memberDict[newId] = ["John Smith (you)  -  Owner"];
@@ -306,7 +322,7 @@ function createAssignment(src) {
         memberDict[newId].push(member_item.getElementsByTagName("span")[0].innerText);
     }
 
-    // clear invited group member list
+    // Clear invited group member list
     member_list.innerHTML = "";
 
     const assignmentStr = document.getElementById("course-name-input").value + " - " +
@@ -316,13 +332,13 @@ function createAssignment(src) {
                     document.getElementById("month-input").value;
     const gradeStr = document.getElementById("assignment-grade-input").value;
 
-    // clear all inputs
+    // Clear all inputs
     const inputs = document.getElementById("assignment-popup").getElementsByTagName("input");
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].value = "";
     }
 
-
+    // Create a assignment card with the values from the prompt
     const div = document.createElement("div");
     curr_assignments.appendChild(div);
     div.outerHTML = `
@@ -336,7 +352,7 @@ function createAssignment(src) {
 
 }
 
-// Deletes the selected assignment and selects the second (hardcode)
+// Deletes the selected assignment and selects the first assignment
 function deleteAssignment() {
     const selected_assignment = document.getElementsByClassName("selected-assignment")[0]
     selected_assignment.parentElement.removeChild(selected_assignment);
@@ -352,6 +368,7 @@ function deleteAssignment() {
     
 }
 
+// Open file picker and write file name to readonly input bar
 var cur_file;
 function fileSelect() {
     var input = document.createElement('input');
@@ -363,6 +380,7 @@ function fileSelect() {
     }
 }
 
+// Format file size from Bytes to nearest unit
 function humanFileSize(bytes, si=false, dp=1) {
     const thresh = si ? 1000 : 1024;
     if (Math.abs(bytes) < thresh) {
@@ -379,6 +397,7 @@ function humanFileSize(bytes, si=false, dp=1) {
     return bytes.toFixed(dp) + units[u];
 }
 
+// Format date String to human readable text
 function getFormattedDate() {
 
     var d = new Date();
@@ -410,7 +429,8 @@ function getFormattedDate() {
 
 }
 
-// set at 100 in case number of default files / assignments changed
+// 'Upload' a file from the selected file from the file picker to the main page file list
+// Set at 100 in case number of default files / assignments changed
 let currDateOrd = 100;
 let currId = 100;
 function fileUpload() {
@@ -420,9 +440,7 @@ function fileUpload() {
     }
     //create a div that matches
     var div = document.createElement("div");
-
     const dateStr = getFormattedDate();
-    
     files_list.appendChild(div);
     div.outerHTML = `<div data-assignment-id=\"${currAssignmentId}\"data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
 
