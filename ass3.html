@@ -25,7 +25,7 @@
                     <p>Due 6:00pm, 9th June</p>
                     <p>Grade weighting: 10%</p>
                 </div>
-                <div data-assignment-id="1" class="assignment-card clickable" onclick="selectAssignment(this); populateFileList(this)">
+                <div data-assignment-id="1" id="hidden-assignment" class="assignment-card clickable hidden" onclick="selectAssignment(this); populateFileList(this)">
                     <h4>SOFTENG 364 - Assignment 2</h4>
                     <p>Due 11:59pm, 10th June</p>
                     <p>Grade weighting: 15%</p>
@@ -44,9 +44,17 @@
                     <p>Grade weighting: 15  %</p>
                 </div>
             </div>
-            <button class="button primary-button" id="create-assignment-button" onclick="openPopup('assignment-popup')">
-                <img src="plus.svg"><span>Create new assignment..</span>
-            </button>
+            <div id="assignment-button-container">
+                <button class="button primary-button" id="canvas-import-button" onclick="importAssignments()">
+                    <img src="import.svg">
+                    <span>Import assignments from Canvas</span>
+                </button>
+                <div>- OR -</div>
+                <button class="button secondary-button" id="create-assignment-button" onclick="openPopup('assignment-popup')">
+                    <img src="plus.svg">
+                    <span>Create new assignment..</span>
+                </button>
+            </div>
         </div>
         <div id="content-container">
             <div class="vertically-center-content" id="assignment-details">
@@ -343,6 +351,10 @@
         <button class="button secondary-button" onclick="closePopup()">Cancel</button>
         <button class="button danger-button" onclick="closePopup();deleteSelectedFiles()">Delete</button>
     </div>
+    <div id="popup-message">
+        'SOFTENG 364 - Assignment 2' successfully imported from Canvas
+    </div>
+
   </body>
   <script src="script.js"></script>
 </html>

@@ -446,3 +446,14 @@ function fileUpload() {
 
     cur_file = undefined;
 }
+
+function importAssignments() {
+    document.getElementById("hidden-assignment").classList.remove("hidden");
+    document.getElementById("popup-message").style.top = "85%";
+    window.setTimeout(() => {
+        document.getElementById("popup-message").style.opacity = "0";
+    }, 2000)
+    window.setTimeout(() => {
+        document.getElementById("popup-message").remove();
+    }, 4000)
+}
