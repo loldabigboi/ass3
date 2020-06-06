@@ -327,7 +327,7 @@ function createAssignment() {
 
     const assignmentStr = document.getElementById("course-name-input").value + " - " +
                           document.getElementById("assignment-name-input").value;
-    const dateStr = document.getElementById("time-input") .value + " " +
+    const dateStr = document.getElementById("time-input") .value + ", " +
                     document.getElementById("day-input")  .value + " " +
                     document.getElementById("month-input").value;
     const gradeStr = document.getElementById("assignment-grade-input").value;
