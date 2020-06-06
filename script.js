@@ -112,7 +112,8 @@ function selectAllFiles() {
 
     let allSelected = true;
     for (let i = 0; i < checkboxes.length; i++) {
-        if (!checkboxes[i].checked) {
+        const file_item = checkboxes[i].parentElement.parentElement.parentElement;
+        if (!file_item.classList.contains("hidden") && !checkboxes[i].checked) {  // ignore hidden files
             allSelected = false;
             break;
         }
@@ -413,6 +414,10 @@ function getFormattedDate() {
 let currDateOrd = 100;
 let currId = 100;
 function fileUpload() {
+
+    if (!cur_file) {
+        return;
+    }
     //create a div that matches
     var div = document.createElement("div");
 
@@ -420,4 +425,6 @@ function fileUpload() {
     
     files_list.appendChild(div);
     div.outerHTML = `<div data-assignment-id=\"${currAssignmentId}\"data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
+
+    cur_file = undefined;
 }
