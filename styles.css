@@ -478,6 +478,9 @@ html, body {
   width: 100%;
   display: inline-block;
 }
+#assignment-popup input ~ input {
+  margin-left: 10px;
+}
 #assignment-popup > p {
   line-height: 5px;
   font-weight: 700;

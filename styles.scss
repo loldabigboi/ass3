@@ -589,6 +589,10 @@ html, body {
     input {
         width: 100%;
         display: inline-block;
+
+        & ~ input {
+            margin-left: 10px;
+        }
     }
 
     & > p {

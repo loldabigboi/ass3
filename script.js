@@ -97,6 +97,7 @@ function searchFilter() {
         if (files_list.children[i].children[0].innerText.toLowerCase().includes(search_bar.value.toLowerCase())) {
             files_list.children[i].style.display = "flex"
         } else {
+            files_list.children[i].getElementsByTagName("input")[0].checked = false;
             files_list.children[i].style.display = "none"
         }
     }
@@ -108,6 +109,7 @@ function populateFileList(element) {
         if (files_list.children[i].getAttribute("data-assignment-id") === element.getAttribute("data-assignment-id")) {
             files_list.children[i].classList.remove("hidden");
         } else {
+            files_list.children[i].getElementsByTagName("input")[0].checked = false;
             files_list.children[i].classList.add("hidden");
         }
     }
@@ -119,14 +121,18 @@ function selectAllFiles() {
 
     let allSelected = true;
     for (let i = 0; i < checkboxes.length; i++) {
-        if (!checkboxes[i].checked) {
+        const file_item = checkboxes[i].parentElement.parentElement.parentElement;
+        if (!file_item.classList.contains("hidden") && !checkboxes[i].checked) {  // ignore hidden files
             allSelected = false;
             break;
         }
     }
 
     for (let i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = !allSelected;
+        const file_item = checkboxes[i].parentElement.parentElement.parentElement;
+        if (!file_item.classList.contains("hidden")) {  // only toggle if file not hidden
+            checkboxes[i].checked = !allSelected;
+        }
     }
 
 }
@@ -150,7 +156,7 @@ function deleteSelectedFiles() {
 let reverseDict = {
     "name": false,
     "size": false,
-    "date": false
+    "time": false
 }
 
 // Sort files based on their properties (name, size, date)
@@ -160,7 +166,7 @@ function sortFiles(src) {
     let sortFunc;
     if (type === "name") {
         sortFunc = function(e1, e2) {
-            return e1.innerText.localeCompare(e2.innerText);
+            return e1.innerText.trim().localeCompare(e2.innerText.trim());
         }
     } else {
         sortFunc = function(e1, e2) {
@@ -261,7 +267,7 @@ function removeMember(src) {
 
 // A pool of names
 let randomNames = [
-    "Jane Doe", "Janice Smith",
+    "Janice Smith", "Kenny McCormick",
     "John Doe", "Richard Rick",
     "Richard Milos", "Henry Yoke",
     "Petra Linkov", "Sven Nev",
@@ -276,9 +282,10 @@ let randomNames = [
 ]
 
 // Invite group members. Input for email is ignored and names are pulled from randomNames
+let nameIndex = 0;
 function inviteGroupMember(popupId, src) {
 
-    const name = randomNames[Math.floor(Math.random() * randomNames.length)]
+    const name = randomNames[nameIndex++ % randomNames.length];
     const dateStr = getFormattedDate();
 
     const div = document.createElement("div");
@@ -293,6 +300,8 @@ function inviteGroupMember(popupId, src) {
         <button class="button danger-button" onclick="removeMember(this)">Remove</button>
     </div>
     `;
+
+    memberList.scrollTop = memberList.scrollHeight;  // scroll to bottom of member list
 
     // reset email field contents
     src.previousElementSibling.value = "";
@@ -345,8 +354,18 @@ function createAssignment() {
 
 // Deletes the selected assignment and selects the first assignment
 function deleteAssignment() {
-    curr_assignments.removeChild(document.getElementsByClassName("selected-assignment")[0]);
-    curr_assignments.children[0].click()
+    const selected_assignment = document.getElementsByClassName("selected-assignment")[0]
+    selected_assignment.parentElement.removeChild(selected_assignment);
+
+    if (selected_assignment.classList.contains("selected-assignment")) {
+        try {
+            document.getElementsByClassName("assignment-card")[0].click()
+        } catch (e) {
+            // no assignments left
+            files_list.innerHTML = "";  // clear file list
+        }
+    }
+    
 }
 
 // Open file picker and write file name to readonly input bar
@@ -415,9 +434,15 @@ function getFormattedDate() {
 let currDateOrd = 100;
 let currId = 100;
 function fileUpload() {
+
+    if (!cur_file) {
+        return;
+    }
     //create a div that matches
     var div = document.createElement("div");
     const dateStr = getFormattedDate();
     files_list.appendChild(div);
     div.outerHTML = `<div data-assignment-id=\"${currAssignmentId}\"data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
+
+    cur_file = undefined;
 }
