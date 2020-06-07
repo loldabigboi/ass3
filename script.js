@@ -208,10 +208,10 @@ function sortFiles(src) {
 }
 
 let memberDict = {
-    0: ["John Smith (you)  -  Owner", "Jane Doe -  Joined 3/05/2020, at 3:57PM"],
-    1: ["John Smith (you)  -  Owner", "Sven Nev -  Joined 2/05/2020, at 8:16PM"],
-    2: ["John Smith (you)  -  Owner", "Denise Nuhts -  Joined 28/04/2020, at 9:40AM"],
-    3: ["John Smith (you)  -  Owner", "Denise Nuhts -  Joined 23/04/2020, at 11:10PM", "Ricardo Milos -  Joined 23/04/2020, at 5:08PM"],
+    0: ["John Smith (you)  -  Owner", "Jane Doe -  Joined 3:57PM, 3rd May"],
+    1: ["John Smith (you)  -  Owner", "Sven Nev -  Joined 8:16PM, 2nd May"],
+    2: ["John Smith (you)  -  Owner", "Denise Nuhts -  Joined 9:40AM, 28th April"],
+    3: ["John Smith (you)  -  Owner", "Denise Nuhts -  Joined 11:10PM, 23rd April", "Ricardo Milos -  Joined 5:08PM, 23rd April"],
 }
 
 // Select an assignment
@@ -401,7 +401,7 @@ function humanFileSize(bytes, si=false, dp=1) {
 function getFormattedDate() {
 
     var d = new Date();
-    const day = d.getDay();
+    const day = d.getDate();
     let daySuffix;
     switch (day % 10) {
         case 1:  daySuffix = "st";
@@ -409,6 +409,7 @@ function getFormattedDate() {
         case 3:  daySuffix = "rd";
         default: daySuffix = "th";
     }
+
     const dayStr = day + daySuffix;
     const monthStr = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"][d.getMonth()];
