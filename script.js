@@ -138,6 +138,7 @@ function selectAllFiles() {
 }
 
 // Delete files if they are `checked`
+var last_deleted = []
 function deleteSelectedFiles() {
     let toDelete = [];
     for (let i = 0; i < files_list.children.length; i++) {
@@ -148,9 +149,9 @@ function deleteSelectedFiles() {
     }
 
     toDelete.forEach((item) => {
+        last_deleted.push(item)
         files_list.removeChild(item);
     })
-
 }
 
 let reverseDict = {
@@ -365,7 +366,6 @@ function deleteAssignment() {
             files_list.innerHTML = "";  // clear file list
         }
     }
-    
 }
 
 // Open file picker and write file name to readonly input bar
@@ -448,6 +448,7 @@ function fileUpload() {
     cur_file = undefined;
 }
 
+// Mock import assignments from canvas
 function importAssignments() {
     document.getElementById("hidden-assignment").classList.remove("hidden");
     document.getElementById("popup-message").style.top = "85%";
@@ -457,4 +458,23 @@ function importAssignments() {
     window.setTimeout(() => {
         document.getElementById("popup-message").remove();
     }, 4000)
+}
+
+//Display popup of files deleted
+function notificationUndoDelete() {
+    console.log(document.getElementById("popup-message-delete-files"))
+    document.getElementById("popup-message-delete-files").style.top = "85%";
+    window.setTimeout(() => {
+        document.getElementById("popup-message-delete-files").style.opacity = "0";
+    }, 4000)
+    window.setTimeout(() => {
+        document.getElementById("popup-message-delete-files").remove();
+    }, 4000)
+}
+
+// Undo deletion of a set of files
+function undoDelete() {
+    last_deleted.forEach(x => {
+        files_list.appendChild(x)
+    })
 }
