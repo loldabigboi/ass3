@@ -137,6 +137,17 @@ function selectAllFiles() {
 
 }
 
+// Check if any files are selected for deletion
+function filesSelected() {
+    for (let i = 0; i < files_list.children.length; i++) {
+        const file_item = files_list.children[i];
+        if (file_item.getElementsByTagName("input")[0].checked) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // Delete files if they are `checked`
 var last_deleted = []
 function deleteSelectedFiles() {
@@ -148,10 +159,16 @@ function deleteSelectedFiles() {
         }
     }
 
+    if (toDelete.length == 0) { 
+        return;
+    }
+
     toDelete.forEach((item) => {
         last_deleted.push(item)
         files_list.removeChild(item);
     })
+    
+    notificationUndoDelete();
 }
 
 let reverseDict = {
@@ -449,27 +466,30 @@ function fileUpload() {
 }
 
 // Mock import assignments from canvas
+const canvas_popup = document.getElementById("canvas-popup-message");
 function importAssignments() {
+
     document.getElementById("hidden-assignment").classList.remove("hidden");
-    document.getElementById("popup-message").style.top = "85%";
+    canvas_popup.style.top = "90%";
+    canvas_popup.style.opacity = "1";
     window.setTimeout(() => {
-        document.getElementById("popup-message").style.opacity = "0";
-    }, 2000)
+        canvas_popup.style.opacity = "0";
+    }, 3000)
     window.setTimeout(() => {
-        document.getElementById("popup-message").remove();
-    }, 4000)
+        canvas_popup.remove();
+    }, 5000)
+
 }
+
+const undo_popup = document.getElementById("popup-message-delete-files");
 
 //Display popup of files deleted
 function notificationUndoDelete() {
-    console.log(document.getElementById("popup-message-delete-files"))
-    document.getElementById("popup-message-delete-files").style.top = "85%";
+    undo_popup.style.top = "90%";
+    undo_popup.style.opacity = "1";
     window.setTimeout(() => {
-        document.getElementById("popup-message-delete-files").style.opacity = "0";
-    }, 4000)
-    window.setTimeout(() => {
-        document.getElementById("popup-message-delete-files").remove();
-    }, 4000)
+        undo_popup.style.opacity = "0";
+    }, 3000);
 }
 
 // Undo deletion of a set of files
@@ -477,4 +497,10 @@ function undoDelete() {
     last_deleted.forEach(x => {
         files_list.appendChild(x)
     })
+}
+
+// Hide undo popup message
+function hideUndo() {
+    undo_popup.style.top = "100%";
+    undo_popup.style.opacity = "0";
 }

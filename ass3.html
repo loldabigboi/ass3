@@ -270,7 +270,7 @@
             </div>
             <div id="file-button-container">
                 <button class="button secondary-button" onclick="selectAllFiles()">Select all</button>
-                <button id="delete-files-button" class="button danger-button" onclick="openPopup('file-deletion-confirmation-popup')">
+                <button id="delete-files-button" class="button danger-button" onclick="if (filesSelected()) openPopup('file-deletion-confirmation-popup')">
                     <img src="trash.svg">
                     <span>Delete selected</span>
                 </button>
@@ -349,13 +349,15 @@
     <div class="popup" id="file-deletion-confirmation-popup">
         <p>Are you sure you want to delete these file(s)?</p>
         <button class="button secondary-button" onclick="closePopup()">Cancel</button>
-        <button class="button danger-button" onclick="closePopup();deleteSelectedFiles();notificationUndoDelete()">Delete</button>
+        <button class="button danger-button" onclick="closePopup();deleteSelectedFiles();">Delete</button>
     </div>
-    <div class="popup-message" id="popup-message">
+    <div class="popup-message" id="canvas-popup-message">
+        <img src="check.svg">
         'SOFTENG 364 - Assignment 2' successfully imported from Canvas
     </div>
-    <div class="popup-message" id="popup-message-delete-files" onclick="undoDelete()">
-        Undo delete?
+    <div class="popup-message" id="popup-message-delete-files" onclick="undoDelete(); hideUndo()">
+        <img src="arrow-counterclockwise.svg">
+        Undo
     </div>
   </body>
   <script src="script.js"></script>
