@@ -347,14 +347,16 @@
         <button class="button primary-button" onclick="closePopup();fileUpload()">Upload</button>
     </div>
     <div class="popup" id="file-deletion-confirmation-popup">
-        <p>Are you sure you want to delete these file(s)? <b>This action cannot be undone.</b></p>
+        <p>Are you sure you want to delete these file(s)?</p>
         <button class="button secondary-button" onclick="closePopup()">Cancel</button>
-        <button class="button danger-button" onclick="closePopup();deleteSelectedFiles()">Delete</button>
+        <button class="button danger-button" onclick="closePopup();deleteSelectedFiles();notificationUndoDelete()">Delete</button>
     </div>
-    <div id="popup-message">
+    <div class="popup-message" id="popup-message">
         'SOFTENG 364 - Assignment 2' successfully imported from Canvas
     </div>
-
+    <div class="popup-message" id="popup-message-delete-files" onclick="undoDelete()">
+        Undo delete?
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
