@@ -485,11 +485,11 @@ const undo_popup = document.getElementById("popup-message-delete-files");
 
 //Display popup of files deleted
 function notificationUndoDelete() {
-    undo_popup.style.top = "90%";
+    undo_popup.style.top = "92%";
     undo_popup.style.opacity = "1";
     window.setTimeout(() => {
-        undo_popup.style.opacity = "0";
-    }, 3000);
+        hideUndo();
+    }, 5000);
 }
 
 // Undo deletion of a set of files
