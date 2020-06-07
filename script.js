@@ -263,7 +263,7 @@ function selectAssignment(element) {
             member_list.appendChild(div)
             div.outerHTML = `
             <div class="group-member-item vertically-center-content">
-                <img src="person.svg">
+                <img src="res/person.svg">
                 <span>${memberDict[currAssignmentId][i]}</span>
                 <button class="button danger-button" onclick="removeMember(this)">Remove</button>
             </div>
@@ -313,7 +313,7 @@ function inviteGroupMember(popupId, src) {
     const memberText = `${name} - Invited ${dateStr}`
     div.outerHTML = `
     <div class="group-member-item vertically-center-content">
-        <img src="person.svg">
+        <img src="res/person.svg">
         <span>${memberText}</span>
         <button class="button danger-button" onclick="removeMember(this)">Remove</button>
     </div>
@@ -460,7 +460,7 @@ function fileUpload() {
     var div = document.createElement("div");
     const dateStr = getFormattedDate();
     files_list.appendChild(div);
-    div.outerHTML = `<div data-assignment-id=\"${currAssignmentId}\"data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
+    div.outerHTML = `<div data-assignment-id=\"${currAssignmentId}\"data-time-ord=\"${currDateOrd++}\" data-size-ord=\"${cur_file.size}\" class=\"file-item\"> <div class=\"file-item-section file-name-item file-name-column\"> <label> <input class=\"file-checkbox\" type=\"checkbox\"> </label> <img src=\"res/file-earmark-text.svg\"> <span>${cur_file.name}</span> </div> <div class=\"file-item-section file-size-item file-size-column\"> <span>${humanFileSize(cur_file.size)}</span> </div> <div class=\"file-item-section file-time-item file-time-column\"> <span>${dateStr}</span> </div> </div>`
 
     cur_file = undefined;
 }

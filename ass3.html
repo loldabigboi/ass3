@@ -12,10 +12,10 @@
         <div id="page-cover"></div>
         <div id="sidebar">
             <button class="button" id="sidebar-toggle-button" onclick="toggleSidebar()">
-                <img src="chevron-right.svg">
+                <img src="res/chevron-right.svg">
             </button>
             <div id="logo-container">
-                <img src="logo.png" id="logo">
+                <img src="res/logo.png" id="logo">
                 <h1 id="logo-name">UniDrive</h1>
             </div>
             <h2 class="sidebar-header">Current assignments:</h2>
@@ -46,12 +46,12 @@
             </div>
             <div id="assignment-button-container">
                 <button class="button primary-button" id="canvas-import-button" onclick="importAssignments()">
-                    <img src="import.svg">
+                    <img src="res/import.svg">
                     <span>Import assignments from Canvas</span>
                 </button>
                 <div>- OR -</div>
                 <button class="button secondary-button" id="create-assignment-button" onclick="openPopup('assignment-popup')">
-                    <img src="plus.svg">
+                    <img src="res/plus.svg">
                     <span>Create new assignment..</span>
                 </button>
             </div>
@@ -66,13 +66,13 @@
             </div>
             <div id="assignment-buttons-container">
                 <button class="button secondary-button" id="view-group-button" onclick="openPopup('group-popup')">
-                    <img src="person.svg"><span>View group..</span>
+                    <img src="res/person.svg"><span>View group..</span>
                 </button>
                 <button class="button primary-button" id="upload-file-button" onclick="openPopup('upload-files-popup')">
-                    <img src="arrow-bar-up.svg"><span>Upload files..</span>
+                    <img src="res/arrow-bar-up.svg"><span>Upload files..</span>
                 </button>
                 <button class="button danger-button" id="delete-assignment-button" onclick="openPopup('assignment-deletion-confirmation-popup')">
-                    <img src="trash.svg"><span>Delete assignment</span>
+                    <img src="res/trash.svg"><span>Delete assignment</span>
                 </button>
             </div>
             <div id="share-details-container">
@@ -82,22 +82,22 @@
                 </div>
             </div>
             <div id="file-search-container">
-                <img src="search.svg">
+                <img src="res/search.svg">
                 <input class="input" id="file-search" type="text" placeholder="Search files.." oninput="searchFilter()">
             </div>
             <div id="files-container">
                 <div id="sort-ribbons-container">
                     <div data-type="name" class="file-name-column sort-ribbon" onclick="sortFiles(this)">
                         <span>File name</span>
-                        <img src="down-arrow.svg">
+                        <img src="res/down-arrow.svg">
                     </div>
                     <div data-type="size" class="file-size-column sort-ribbon" onclick="sortFiles(this)">
                         <span>File size</span>
-                        <img src="down-arrow.svg">
+                        <img src="res/down-arrow.svg">
                     </div>
                     <div data-type="time" class="file-time-column sort-ribbon" onclick="sortFiles(this)">
                         <span>Time of upload</span>
-                        <img src="down-arrow.svg">
+                        <img src="res/down-arrow.svg">
                     </div>
                 </div>
                 <div id="files-list">
@@ -106,7 +106,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-text.svg">
+                            <img src="res/file-earmark-text.svg">
                             <span>info.txt</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -121,7 +121,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-spreadsheet.svg">
+                            <img src="res/file-earmark-spreadsheet.svg">
                             <span>data.xlsx</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -136,7 +136,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-text.svg">
+                            <img src="res/file-earmark-text.svg">
                             <span>file1_temp.txt</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -151,7 +151,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-text.svg">
+                            <img src="res/file-earmark-text.svg">
                             <span>meeting_deets.txt</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -166,7 +166,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-code.svg">
+                            <img src="res/file-earmark-code.svg">
                             <span>index.html</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -181,7 +181,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-code.svg">
+                            <img src="res/file-earmark-code.svg">
                             <span>styles.css</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -196,7 +196,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-code.svg">
+                            <img src="res/file-earmark-code.svg">
                             <span>index.html</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -211,7 +211,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-text.svg">
+                            <img src="res/file-earmark-text.svg">
                             <span>dont_look.txt</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -226,7 +226,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-text.svg">
+                            <img src="res/file-earmark-text.svg">
                             <span>monkaS.txt</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -241,7 +241,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-text.svg">
+                            <img src="res/file-earmark-text.svg">
                             <span>why r we here.txt</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -256,7 +256,7 @@
                             <label>
                                 <input class="file-checkbox" type="checkbox">
                             </label>
-                            <img src="file-earmark-code.svg">
+                            <img src="res/file-earmark-code.svg">
                             <span>only to suffr? :/.html</span>
                         </div>
                         <div class="file-item-section file-size-item file-size-column">
@@ -271,7 +271,7 @@
             <div id="file-button-container">
                 <button class="button secondary-button" onclick="selectAllFiles()">Select all</button>
                 <button id="delete-files-button" class="button danger-button" onclick="if (filesSelected()) openPopup('file-deletion-confirmation-popup')">
-                    <img src="trash.svg">
+                    <img src="res/trash.svg">
                     <span>Delete selected</span>
                 </button>
             </div>
@@ -281,11 +281,11 @@
         <h3>Current group members:</h3>
         <div class="group-member-list">
             <div class="group-member-item vertically-center-content">
-                <img src="person.svg">
+                <img src="res/person.svg">
                 <span>John Smith (you)  -  Owner</span>
             </div>
             <div class="group-member-item vertically-center-content">
-                <img src="person.svg">
+                <img src="res/person.svg">
                 <span>Jane Doe  -  Joined 3:57PM, 3rd May</span>
                 <button class="button danger-button" onclick="removeMember(this)">Remove</button>
             </div>
@@ -297,7 +297,7 @@
         </div>
         <button class="button secondary-button" onclick="closePopup('group-popup')">Back</button>
         <button class="button exit-button" onclick="closePopup()">
-            <img src="cross.svg">
+            <img src="res/cross.svg">
         </button>
     </div>
     <div class="popup" id="assignment-popup">
@@ -329,7 +329,7 @@
             <button class="button primary-button" onclick="createAssignment()">Create</button>
         </div>
         <button class="button exit-button" onclick="closePopup()">
-            <img src="cross.svg">
+            <img src="res/cross.svg">
         </button>
     </div>
     <div class="popup" id="assignment-deletion-confirmation-popup">
@@ -352,11 +352,11 @@
         <button class="button danger-button" onclick="closePopup();deleteSelectedFiles();">Delete</button>
     </div>
     <div class="popup-message" id="canvas-popup-message">
-        <img src="check.svg">
+        <img src="res/check.svg">
         'SOFTENG 364 - Assignment 2' successfully imported from Canvas
     </div>
     <div class="popup-message" id="popup-message-delete-files" onclick="undoDelete(); hideUndo()">
-        <img src="arrow-counterclockwise.svg">
+        <img src="res/arrow-counterclockwise.svg">
         Undo
     </div>
   </body>

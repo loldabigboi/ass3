@@ -266,61 +266,69 @@ html, body {
 #content-container > * + * {
   margin-bottom: 10px;
 }
-#content-container #assignment-details {
+
+#assignment-details {
   justify-content: space-between;
 }
-#content-container #assignment-details > * {
+#assignment-details > * {
   display: inline-block;
 }
-#content-container #assignment-details h2 {
+#assignment-details h2 {
   font-size: 20px;
   font-weight: 550;
 }
-#content-container #assignment-details div {
+#assignment-details div {
   margin-right: 10px;
   font-size: 15px;
   line-height: 5px;
   float: right;
   text-align: right;
 }
-#content-container #assignment-buttons-container {
+
+#assignment-buttons-container {
   margin-top: 10px;
   margin-bottom: 35px;
   display: flex;
 }
-#content-container #assignment-buttons-container #view-group-button img {
+
+#view-group-button img {
   height: 23px;
   margin-right: 10px;
 }
-#content-container #assignment-buttons-container #upload-file-button img {
+
+#upload-file-button img {
   height: 19px;
   margin-right: 7px;
   margin-top: 2px;
 }
-#content-container #assignment-buttons-container #delete-assignment-button {
+
+#delete-assignment-button {
   margin-left: auto;
 }
-#content-container #assignment-buttons-container #delete-assignment-button img {
+#delete-assignment-button img {
   height: 20px;
   margin-right: 10px;
 }
-#content-container #share-details-container {
+
+#share-details-container {
   display: none;
   margin-top: 5px;
   margin-bottom: 35px;
 }
-#content-container #share-details-container p {
+#share-details-container p {
   line-height: 5px;
   font-size: 16px;
 }
-#content-container #share-details-container #share-list {
+
+#share-list {
   height: 125px;
   border: 1px solid lightgray;
 }
-#content-container #file-search-container {
+
+#file-search-container {
   display: flex;
 }
-#content-container #file-search-container img {
+#file-search-container img {
   border: 1px solid lightgray;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
@@ -329,7 +337,7 @@ html, body {
   padding: 6px 12px;
   border-right: none;
 }
-#content-container #file-search-container input {
+#file-search-container input {
   flex: 1 0;
   padding: 0 0 0 10px;
 }
